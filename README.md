@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # 2D Weak-Form Stochastic Generator Recovery
 
 Reproducibility package for:
 
 > **Recovering two-dimensional Itô generators from trajectory data**
-> [author names] — [venue / arXiv link]
+> [Sai Sathvik Gullipalli - Eshwar R A - Gajanan V. Honnavar] — [ arXiv link (will update once link is avaliable)]
 
 Extends the 1D spatial-Gaussian-kernel weak-form estimator of Eshwar & Honnavar (arXiv:2603.20904)
 to two-dimensional Itô diffusions, recovering drift, the full diffusion tensor (including
@@ -108,9 +106,3 @@ The paper names where recovery fails or is unreliable:
 
 These are documented in `results/paper/` after running `reproduce.sh` and discussed
 in the paper's limitations section.
-=======
-# Weak-Form-Recovery-Of-2D-SDE
->>>>>>> f24d5c7607458a3645d1270d7416f0a7dabc52e4
-=======
-# Symbolic-Weak-form-Recovery-of-2-D-Stochastic-Generators
->>>>>>> origin/main
