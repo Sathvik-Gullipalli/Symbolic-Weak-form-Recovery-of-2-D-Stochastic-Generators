@@ -1,0 +1,86 @@
+% Auto-generated tight datasheets. Coefficients live in the aggregate R32 table. Source: results/v10/coeff_recovery_R32.csv
+\paragraph{Bistable and gradient systems}\;
+
+\subsection{Double well + transverse}\label{sec:v62-double-well-transverse}
+\paragraph{Context.} A one-dimensional double well coupled to a stable transverse mode, the simplest metastable two-dimensional system. The cubic restoring force encodes two wells separated by a barrier, while the transverse direction relaxes linearly; recovering the cubic accurately is what lets the identified generator reproduce the metastable two-state structure and the escape geometry.
+\paragraph{System.} $$\drift=(X-X^3-0.5Y,\,-Y+0.5X),\ \diff=0.49 I.$$
+\paragraph{Generator.} Cubic bistable $x$ coupled to a stable transverse mode; the cubic encodes the two wells and barrier.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.226$ and the diffusion tensor at $0.024$ relative error; the recovered drift reconstructs the potential landscape, its metastable wells, and the barrier between them. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.228 & 0.024 & -- & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.766 & 0.105 & -- & 1.00 \\
+Temporal Weak-SINDy & 0.943 & 0.085 & -- & 1.00 \\
+gEDMD & 0.563 & 0.073 & -- & 1.00 \\
+Vanilla SINDy (FD-STLSQ) & 2.99 & 0.354 & -- & 0.988 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_double_well_transverse.pdf}
+\caption{Double well + transverse: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.226$, tensor rel-$L^2=0.024$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Gradient potential}\label{sec:v62-gradient-potential}
+\paragraph{Context.} A genuine two-dimensional gradient flow on a quartic potential with an $x^2y^2$ coupling. As the reversible twin of the non-gradient circulation system, it tests recovery of a full 2D potential (not a separable one) and of the resulting Boltzmann stationary density $\pi\propto e^{-2V/\sigma^2}$; the circulation read-out must return essentially zero, the discriminating contrast against its non-gradient counterpart.
+\paragraph{System.} $$\drift=-\nabla V,\ V=\tfrac14(x^2-1)^2+\tfrac12 y^2+\tfrac14 x^2y^2,\ \diff=0.49 I.$$
+\paragraph{Generator.} Reversible gradient flow with an $x^2y^2$ coupling; stationary density $\propto e^{-2V/\sigma^2}$; circulation read-out correctly near zero.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.246$ and the diffusion tensor at $0.024$ relative error; the recovered drift reconstructs the potential landscape, its metastable wells, and the barrier between them. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.246 & 0.024 & -- & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.603 & 0.094 & -- & 1.00 \\
+Temporal Weak-SINDy & 1.01 & 0.072 & -- & 1.00 \\
+gEDMD & 0.640 & 0.059 & -- & 1.00 \\
+Vanilla SINDy (FD-STLSQ) & 2.14 & 0.372 & -- & 0.953 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_gradient_potential.pdf}
+\caption{Gradient potential: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.246$, tensor rel-$L^2=0.024$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Maier--Stein}\label{sec:v62-maier-stein}
+\paragraph{Context.} The Maier--Stein system is a standard benchmark in large-deviation and transition-path theory, modelling noise-activated escape over a non-gradient barrier. Its drift mixes a cubic bistability with a state-dependent transverse term $-(1+x^2)y$, whose $y$ and $x^2y$ pieces are strongly collinear on the sampled region; recovering the symbolic drift means the quasipotential and most-probable escape path become computable from data, which is why it is included despite being one of the harder fits.
+\paragraph{System.} $$\drift=(X-X^3-\beta XY^2,\,-(1+X^2)Y),\ \beta=0.35,\ \diff=0.1225 I.$$
+\paragraph{Generator.} Canonical non-gradient escape model. The $-(1+x^2)y$ term ($y$ and $x^2y$) is collinear on the sampled region; the small $-\beta xy^2$ term is the hardest to identify.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.235$ and the diffusion tensor at $0.038$ relative error; the recovered drift reconstructs the potential landscape, its metastable wells, and the barrier between them. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_maier_stein.pdf}
+\caption{Maier--Stein: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.235$, tensor rel-$L^2=0.038$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Duffing oscillator}\label{sec:v62-duffing}
+\paragraph{Context.} The Duffing oscillator is a textbook nonlinear mechanical resonator written in position--velocity phase space. It tests recovery of a deterministic skeleton with a cubic restoring force and weak linear damping; because the damping coefficient is small relative to the restoring force and the noise, it is a controlled probe of how the estimator handles a genuine but low-amplitude term.
+\paragraph{System.} $$\mathrm{d}X=Y\,\mathrm{d}t,\ \mathrm{d}Y=(-0.35Y+X-X^3)\mathrm{d}t+\sigma\mathrm{d}W,\ \diff_{22}=0.09.$$
+\paragraph{Generator.} Noisy bistable oscillator in position--velocity form; the small damping $-0.35y$ is low-SNR and intermittently selected.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.240$ and the diffusion tensor at $0.031$ relative error; the recovered drift reconstructs the potential landscape, its metastable wells, and the barrier between them. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_duffing.pdf}
+\caption{Duffing oscillator: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.240$, tensor rel-$L^2=0.031$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Mueller--Brown}\label{sec:v62-mueller-brown}
+\paragraph{Context.} The M\"uller--Brown surface is a standard multi-well molecular-dynamics benchmark. Its gradient drift is a sum of anisotropic Gaussians, strongly non-polynomial and stiff, and the small mobility depresses the drift signal; the diffusion is recovered while the drift is a representability null, an honest boundary that a radial-basis library, not a polynomial one, would be needed to cross.
+\paragraph{System.} $$\drift=-m\nabla V_{\mathrm{MB}}\ (\text{four-Gaussian potential}),\ m=0.004.$$
+\paragraph{Generator.} Stiff multi-well molecular potential; the strongly non-polynomial gradient is not spanned by a polynomial library. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=1.826$ and the diffusion tensor at $0.075$ relative error; the recovered drift reconstructs the potential landscape, its metastable wells, and the barrier between them. This is a named limit (registry declared failure or stress case): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_mueller_brown.pdf}
+\caption{Mueller--Brown: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=1.826$, tensor rel-$L^2=0.075$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip

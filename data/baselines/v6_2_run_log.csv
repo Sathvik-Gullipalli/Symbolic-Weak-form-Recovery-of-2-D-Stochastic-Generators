@@ -1,0 +1,2 @@
+profile,registry_2d_systems,extra_systems_run,new_canonical_systems,seeds,extra_raw_rows,system_index_rows,data_integrity_errors,runtime_sec,finalize_runtime_sec,runtime_basis
+full,29,16,10,10,160,29,0,1806.7514410669974,11.014485021005385,"max(previous runtime_sec, current process runtime); resume finalization can be shorter than the original full run"

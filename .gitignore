@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Matplotlib cache
+.matplotlib-cache/
+.mplconfig/
+
+# macOS
+.DS_Store
+
+# Generated figures (reproduced by reproduce.sh)
+figures/datasheets/
+figures/paper/
+
+# Generated results (reproduced by reproduce.sh)
+# data/ is checked in — it holds pre-computed inputs
+results/coefficient_recovery/
+results/paper/
+
+# LaTeX build artefacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.synctex.gz
+paper/*.bbl
+paper/*.blg
+paper/_minted-*/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/

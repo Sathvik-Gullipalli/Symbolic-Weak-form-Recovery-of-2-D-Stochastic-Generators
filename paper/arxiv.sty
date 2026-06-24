@@ -1,0 +1,35 @@
+% arxiv.sty — minimal, self-contained arXiv-preprint look (single column).
+% Safe subset: geometry + title spacing + abstract formatting. No exotic deps.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{arxiv}[2026/06/20 minimal arxiv preprint style]
+
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{times}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{titling}
+
+% --- header/footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\thepage}
+
+% --- title block spacing (centered, bold, arxiv-like) ---
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vskip 0.5em}
+\preauthor{\begin{center}\large}
+\postauthor{\par\end{center}}
+\predate{\begin{center}}
+\postdate{\par\end{center}}
+
+% --- section fonts ---
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\paragraph}[runin]{\bfseries}{}{0em}{}[.]
+
+% --- abstract a touch narrower, as in the sample ---
+\renewenvironment{abstract}{%
+  \centerline{\bfseries Abstract}\vspace{0.3em}\begin{quote}\small}{\end{quote}\vspace{0.5em}}
+
+\endinput

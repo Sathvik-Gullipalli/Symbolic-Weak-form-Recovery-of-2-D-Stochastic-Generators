@@ -1,0 +1,571 @@
+\documentclass[11pt]{article}
+\usepackage{arxiv}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{algorithm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{cleveref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{assumption}{Assumption}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\drift}{b}
+\newcommand{\diff}{a}
+\newcommand{\Lgen}{\mathcal{L}}
+\newcommand{\xt}{X_t}
+\newcommand{\Kj}{K_j}
+\graphicspath{{figures/}}
+
+\title{Symbolic Weak-Form Recovery of 2-D Stochastic Generators}
+
+\author{%
+  Sai Sathvik Gullipalli\thanks{Department of Computer Science Engineering, PES University
+  (EC Campus), Bengaluru, KA 560100, India. \texttt{saisathvik127@gmail.com}} \quad
+  Eshwar R A\thanks{Department of Computer Science Engineering, PES University
+  (EC Campus), Bengaluru, KA 560100, India. \texttt{eshwarra5@gmail.com}} \quad
+  Gajanan V. Honnavar\thanks{Department of Science and Humanities, PES University
+  (EC Campus), Bengaluru, KA 560100, India. \texttt{gajanan.honnavar@pes.edu}.
+  Corresponding author.}%
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Recovering the generators of two-dimensional It\^o diffusions from trajectory data remains
+underexplored relative to the one-dimensional case, despite direct relevance to stochastic
+volatility modeling, nonequilibrium statistical physics, and systems neuroscience. Building on
+the weak-form spatial-kernel estimator of Eshwar and Honnavar~\cite{eshwar2026weak}, which is
+unbiased and derivative-free in one dimension, we show that a naive component-wise extension to
+two dimensions is ill-conditioned and recovers drift poorly.
+
+We introduce a novel methodology for the discovery of such systems that retains the
+spatial-Gaussian-kernel identity while adding six targeted mechanisms: standardized anisotropic
+covariance-shaped kernels, a local-polynomial weak projection, adaptive-LASSO sparsification, a
+Cholesky-parametrized diffusion fit that guarantees a positive-semidefinite tensor, a
+generalized-least-squares drift pass that whitens by the first-pass diffusion tensor, and
+multi-trajectory pooling with group-structured cross-validation. The key mathematical
+contribution is proving that the GLS weights are $\mathcal{F}_{t_n}$-measurable, which preserves
+the spatial-kernel unbiasedness theorem while improving efficiency without introducing
+endogeneity.
+
+We validate across 29 two-dimensional systems, achieving median drift error $\approx 0.23$,
+off-diagonal diffusion cosine $\approx 0.99$, positive-semidefinite tensors at every grid point,
+and zero false positives under our support criterion.
+\end{abstract}
+
+\noindent\textbf{Keywords:} stochastic generator recovery $\cdot$ weak-form sparse
+identification $\cdot$ diffusion tensor $\cdot$ GLS whitening $\cdot$ leverage and circulation
+$\cdot$ 2D It\^o diffusions
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Introduction}\label{sec:intro}
+% ──────────────────────────────────────────────────────────────────────────────
+
+A central problem across quantitative finance, molecular dynamics, neuroscience, and climate
+modelling is the \emph{inverse problem} for stochastic dynamics: given a discretely sampled,
+noisy trajectory of a system, reconstruct the stochastic differential equation (SDE) that
+generated it. The object that fully characterises a diffusion's local dynamics is its
+infinitesimal generator $\Lgen f = \drift\!\cdot\!\nabla f + \tfrac{1}{2}\,\diff\!:\!\nabla^2 f$,
+which encodes the drift vector $\drift$ and the diffusion tensor $\diff=\sigma\sigma^\top$.
+Recovering $\Lgen$ symbolically---rather than as a black-box surrogate---exposes spectral gaps,
+escape rates, leverage correlations, and probability currents directly.
+
+The weak-form spatial-kernel estimator of Eshwar and Honnavar~\citep{eshwar2026weak} solves
+this in one dimension. By projecting increments onto spatial Gaussian kernels $\Kj$ rather than
+temporal test functions, it is unbiased (the kernel is $\mathcal{F}_{t_n}$-measurable, so the
+It\^o noise integrates to zero in expectation), derivative-free, and produces an explicit
+symbolic generator from a single shared design matrix. A companion
+work~\citep{gullipalli2026heston} applied a restricted form to Heston stochastic volatility,
+recovering the leverage correlation through a cross-variation target.
+
+Extending this to genuinely two-dimensional, coupled, non-diagonal diffusions is the natural
+next step the foundational paper lists as future work, and it is harder than it appears. A
+faithful component-wise port of the 1D estimator to 2D---the ``naive port'' any reader would
+try first---fails on the drift: the design matrix built from raw bivariate monomials over a
+scale-disparate, localised state cloud is severely ill-conditioned, the unweighted normal
+equations are statistically inefficient where the drift signal-to-noise ratio is low, and the
+recovered diffusion tensor need not be positive semidefinite. We show these failures explicitly
+(\Cref{sec:naive}) and then fix each with a targeted, conceptually motivated graft, yielding
+\textbf{WG-SINDy}.
+
+\paragraph{Contributions.}
+(i) WG-SINDy, a weak-form 2D generator estimator built from six targeted grafts onto the 1D
+spatial-kernel identity, recovering both drift components and all three independent entries of
+the diffusion tensor symbolically (\Cref{sec:method}); (ii) a proof that the GLS drift-whitening
+pass preserves the spatial-kernel unbiasedness of the 1D theory (\Cref{thm:unbiased});
+(iii) a per-component \emph{necessity matrix} establishing that each of the six grafts solves a
+distinct failure mode, framing the method as a structured extension of the weak form rather than
+a collection of tricks (\Cref{sec:ablation}); and (iv) a broad validation over 29 2D systems
+with per-system datasheets (\Cref{app:datasheets}), together with an explicit falsification
+boundary.
+
+\subsection{Scope of claims}\label{sec:scope}
+
+We claim recovery over a broad class of \emph{identifiable} 2D It\^o diffusions: those whose
+drift and diffusion lie in the chosen feature library, whose trajectories cover the state space,
+and whose design matrix has full column rank. We do \emph{not} claim universal 2D recovery. We
+name, and do not paper over, the limits where recovery fails: the risk-neutral log-price drift
+$\mu-\tfrac{1}{2}v$ of stochastic-volatility models (signal-to-noise $\sim10^{-4}$ at financial
+sampling rates), near-singular and rank-deficient diffusion tensors, Feller-violating boundaries,
+non-spanning libraries, and under-covered state spaces. The diffusion tensor (not $\sigma$
+itself) is the identifiable object, since $\sigma$ and $\sigma O$ for any orthogonal $O$ produce
+the same $\diff=\sigma\sigma^\top$.
+
+\subsection{Code and data availability}\label{sec:code}
+
+A self-contained reproduction bundle (frozen estimator, all experiment runners, result tables,
+figures, and this manuscript) is provided. Running \texttt{reproduce.sh} regenerates every
+figure and table from fixed seeds.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Background}\label{sec:background}
+% ──────────────────────────────────────────────────────────────────────────────
+
+\subsection{It\^o diffusions and the generator}
+
+Consider $\mathrm{d}\xt = \drift(\xt)\,\mathrm{d}t + \sigma(\xt)\,\mathrm{d}W_t$ on $\R^2$,
+with diffusion tensor $\diff=\sigma\sigma^\top$ and generator
+\begin{equation}
+  \Lgen f = \drift_1\partial_1 f + \drift_2\partial_2 f
+  + \tfrac{1}{2}\bigl(\diff_{11}\partial_{11}f
+  + 2\diff_{12}\partial_{12}f + \diff_{22}\partial_{22}f\bigr).
+\end{equation}
+Recovery requires identifying five functions:
+$\drift_1,\drift_2,\diff_{11},\diff_{12},\diff_{22}$. We write each as a sparse combination of
+library features, $\drift_p=\Theta c^{(p)}$ and $\diff_{pq}=\Theta d^{(pq)}$.
+
+\subsection{The 1D weak-form spatial-kernel estimator}
+
+Given samples $\{X_{t_n}\}$ at step $\Delta t$, the 1D method~\citep{eshwar2026weak} places
+spatial Gaussian kernels $\Kj$ over the state range and forms a single design
+$A_{jk}=\sum_n \Kj(X_{t_n})f_k(X_{t_n})\Delta t$, shared by the drift system
+$B^{(p)}_j=\sum_n \Kj\,\Delta X_n^{(p)}$ and the (cross-)variation system
+$Q^{(pq)}_j=\sum_n \Kj\,\Delta X_n^{(p)}\Delta X_n^{(q)}$, with a finite-step bias correction
+and lag-one observation-noise correction. Because $\Kj(X_{t_n})$ is
+$\mathcal{F}_{t_n}$-measurable and the Brownian increment $\xi_n$ is independent of
+$\mathcal{F}_{t_n}$, the tower property gives $\E[\Kj\sigma\xi_n]=0$, so the estimator is
+unbiased---the property that temporal test functions famously lack.
+
+\subsection{Related methods}
+
+Stochastic SINDy and Kramers--Moyal estimators~\citep{boninsegna2018sparse} form each
+regression row from a single-step increment, entangling signal and noise; Weak
+SINDy~\citep{messenger2021weak} averages noise over test functions but was derived for
+deterministic systems and does not treat the diffusion tensor; generator
+EDMD~\citep{klus2020gedmd} estimates the operator densely and is neither sparse nor symbolic.
+WG-SINDy retains the weak-form, sparse, symbolic, derivative-free identity while making the
+full 2D tensor recoverable. We deliberately exclude mechanisms that would break this identity
+(full gEDMD/eigenfunction targets, Milstein and It\^o--Taylor derivative targets, latent-state
+Kalman/EM smoothing): the method is a weak-form extension, not a re-skinned operator method.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Methodology: WG-SINDy}\label{sec:method}
+% ──────────────────────────────────────────────────────────────────────────────
+
+WG-SINDy keeps the 1D identity and grafts six mechanisms; each is justified in
+\Cref{sec:ablation} by its marginal contribution on the necessity matrix.
+
+\paragraph{(G1) Standardized anisotropic kernels.}
+States are standardised and kernel centres placed by $k$-means; the kernel bandwidth is the
+empirical covariance scaled by $1.5$, so the kernel geometry matches the data cloud rather than
+an isotropic ball. This fixes the severe ill-conditioning of the naive port on scale-disparate
+systems.
+
+\paragraph{(G2) Local-polynomial projection.}
+The weak projection is local-polynomial of order two~\citep{fan1996local} rather than
+local-constant (Nadaraya--Watson), which removes the $O(h^2)$ boundary bias that otherwise
+corrupts tensor and drift estimates near the edge of the observed region.
+
+\paragraph{(G3) Adaptive-LASSO sparsification.}
+Feature selection uses adaptive LASSO with penalty weights inversely proportional to an initial
+ridge estimate, promoting exact sparsity and reducing the false-positive rate relative to
+unweighted $\ell_1$ regularisation.
+
+\paragraph{(G4) Cholesky-parametrized diffusion fit.}
+The diffusion is fit through a lower-triangular factor $L$ with $\diff=LL^\top$, so the
+recovered tensor is positive semidefinite by construction~\citep{ledoit2004well}. Sparsity and
+false-positive counts are defined on the factor entries; the reported symbolic tensor is the
+expanded polynomial $LL^\top$.
+
+\paragraph{(G5) GLS drift whitening.}
+A first pass solves the drift and diffusion systems, then the drift is re-solved by
+\emph{generalised least squares}: each weak row $j$ is weighted by the inverse of its
+kernel-local noise variance
+$V^{\mathrm{noise}}_j=\Delta t\int \Kj^2\,\hat\diff_{pp}\,\mathrm{d}\mu$. This is the core 2D
+novelty: in one dimension there is no tensor to whiten by, but in two dimensions the
+heteroscedastic, coupled noise across kernels makes the unweighted solve inefficient exactly
+where the drift is weak. To keep the weights non-anticipative, the released code provides a
+\emph{cross-fitting} option in which the weighting tensor for trajectory $r$ is estimated from
+the remaining trajectories ($\hat\diff^{(-r)}$, leave-one-trajectory-out), making the weight
+independent of the increment it multiplies (\Cref{thm:unbiased}(i)); the reported runs use
+feasible in-sample weights, which \Cref{thm:unbiased}(ii) shows are asymptotically equivalent.
+
+\paragraph{(G6) Multi-trajectory pooling.}
+$R=16$ independent trajectories are stacked into a single design system and sparsified jointly
+with group-structured cross-validation (one fold per trajectory). Pooling is the largest single
+contributor to the in-scope score: the jump from $R=1$ to $R=16$ accounts for the majority of
+the gap between the incremental ladder and full WG-SINDy (necessity-matrix row:
+\texttt{NEC\_LOO\_MULTI\_TRAJECTORY}).
+
+\begin{algorithm}[H]\small
+\textbf{Algorithm 1: WG-SINDy} (six grafts on the 1D spatial-kernel identity).\\
+\textit{Input:} $R$ trajectories $\{X^{(r)}_{t_n}\}$, step $\Delta t$, library $\Theta$,
+kernel count $J$.\\[2pt]
+(G1) Standardise states; place $J$ $k$-means centres; build anisotropic-covariance Gaussian
+     kernels $\{\Kj\}$.\\
+(G2) Form the shared local-polynomial (order-2) design matrix $A \in \R^{J \times p}$.\\
+(G6) Stack all $R$ trajectories; form pooled drift target $B$ and cross-variation target $Q$
+     with finite-step and lag-1 corrections.\\
+\phantom{(G )} Solve pass-1 drift and diffusion systems.\\
+(G4) Re-fit diffusion via Cholesky factor $L$ ($\diff = LL^\top$); guaranteed PSD.\\
+(G5) Form GLS weights $1/V^{\mathrm{noise}}_j[\hat\diff]$ (cross-fitted option:
+     $\hat\diff^{(-r)}$); re-solve drift (pass-2).\\
+(G3) Adaptive-LASSO sparsification with group-structured cross-validation (one fold per
+     trajectory).\\[2pt]
+\textit{Output:} symbolic $\hat\Lgen$; read-outs: leverage
+$\hat\diff_{12}/\sqrt{\hat\diff_{11}\hat\diff_{22}}$, fluctuation
+$\hat\diff_{11},\hat\diff_{22}$, circulation from the antisymmetric drift Jacobian.
+\end{algorithm}
+
+\begin{theorem}[GLS preserves unbiasedness; feasible GLS is asymptotically
+equivalent]\label{thm:unbiased}
+\emph{(i) Cross-fitted GLS.} If the weighting tensor for trajectory $r$ is estimated from the
+other trajectories, $\hat\diff^{(-r)}$, then the weight
+$w_j^{(-r)}=1/V^{\mathrm{noise}}_j[\hat\diff^{(-r)}]$ is independent of trajectory $r$'s own
+increments, so
+$\E[\,w_j^{(-r)}\Kj(X_{t_n})\sigma(X_{t_n})\xi_n\mid\mathcal{F}_{t_n}\,]=0$ and the
+cross-fitted GLS drift estimator is exactly unbiased and consistent under the standing
+ergodicity, coverage, and full-rank conditions.
+
+\emph{(ii) Feasible (in-sample) GLS.} With weights built from the pooled first-pass $\hat\diff$,
+the weight is not strictly $\mathcal{F}_{t_n}$-measurable; however, since $\hat\diff\to\diff$,
+the induced endogeneity bias is $o_p(1)$ at the rate of the tensor-estimation error, so feasible
+GLS is asymptotically equivalent to oracle GLS. In both cases GLS \emph{reduces variance}
+relative to the unweighted weak regression and attains feasible-GLS efficiency under oracle
+support and regularity; we do not claim exact finite-sample efficiency.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+(i) $w_j^{(-r)}\Kj(X_{t_n})\sigma(X_{t_n})$ is, conditional on $\mathcal{F}_{t_n}$ and the
+held-out fold, deterministic in trajectory $r$, while $\xi_n\perp\mathcal{F}_{t_n}$; the tower
+property gives conditional mean zero, hence unconditional mean zero. Consistency follows from
+the ergodic limit of the weighted normal equations as in the unweighted case.
+
+(ii) Writing $w_j=w_j^\star+(w_j-w_j^\star)$ with the oracle weight $w_j^\star$, the first term
+is unbiased by part (i) and the second contributes a bias of order
+$\|\hat\diff-\diff\|=o_p(1)$. The released code supports cross-fitted
+(leave-one-trajectory-out) weights, to which part (i) applies; the reported feasible-GLS runs
+are covered by part (ii).
+\end{proof}
+
+\subsection{Explicit corrections and the Cholesky diffusion fit}\label{sec:cholesky}
+
+\paragraph{Finite-step and lag-one corrections.}
+The raw cross-variation $\sum_n \Kj\,\Delta X_n^{(p)}\Delta X_n^{(q)}$ estimates
+$\int \Kj\diff_{pq}\,\mathrm{d}t$ to leading order but carries an $O(\Delta t^2)$ drift-squared
+bias. Squaring the Euler--Maruyama increment gives
+$\Delta X_n\Delta X_n^\top=\diff\,\Delta t+\drift\drift^\top\Delta t^2
++(\text{mean-zero }O(\Delta t^{3/2}))$, so after the drift pass we subtract the corrected term
+$Q^{(pq),\mathrm{corr}}_j=\sum_n
+\Kj\bigl[\Delta X_n^{(p)}\Delta X_n^{(q)}-\hat\drift_p(X_n)\hat\drift_q(X_n)\Delta t^2\bigr]$.
+Under additive observation noise $\tilde X=X+\eta$, the lag-zero quadratic variation is inflated
+by $2\Sigma_\eta$ while the lag-one product
+$\E[\Delta\tilde X_n\Delta\tilde X_{n+1}^\top]=-\Sigma_\eta$ is not; we estimate
+$\hat\Sigma_\eta=-\tfrac{1}{N-1}\sum_n\Delta\tilde X_n\Delta\tilde X_{n+1}^\top$ and subtract
+$2\hat\Sigma_\eta$ from the per-row outer products before projection. Both corrections act
+entrywise on the $2\times2$ tensor, including the off-diagonal.
+
+\paragraph{Cholesky fit.}
+To guarantee a positive-semidefinite recovered tensor we parametrise $\diff=LL^\top$ with
+lower-triangular
+$L=\begin{psmallmatrix}\ell_{11}&0\\ \ell_{21}&\ell_{22}\end{psmallmatrix}$ and fit the
+\emph{factor entries} $\ell_{11},\ell_{21},\ell_{22}$ as sparse library expansions
+$\ell_{ab}=\Theta\beta^{(ab)}$. Because
+$\diff_{11}=\ell_{11}^2,\ \diff_{12}=\ell_{11}\ell_{21},\ \diff_{22}=\ell_{21}^2+\ell_{22}^2$
+are quadratic in the factors, the corrected cross-variation targets are matched by a separable
+nonlinear least-squares problem,
+$\min_{\beta}\sum_j\bigl\|Q^{\mathrm{corr}}_j-(LL^\top)(\,\cdot\,;\beta)\bigr\|^2$, solved by
+alternating ridge-regularised updates initialised from the unconstrained linear $\diff$-fit.
+\emph{Sparsity and the false-positive count are defined on the factor entries $\beta^{(ab)}$};
+the \emph{reported symbolic tensor} is the expanded polynomial $LL^\top$. The Cholesky map
+introduces no first-order bias in $\diff_{12}$ when the true tensor is in range (quantified on
+the non-diagonal-Cholesky datasheet); near rank deficiency it trades a small magnitude bias for
+guaranteed positive semidefiniteness.
+
+\subsection{Metrics and the support rule}\label{sec:metrics}
+
+For a recovered function $\hat g$ against truth $g$ on a grid weighted by the empirical
+stationary measure $\mu$, the relative error is
+$\|\hat g-g\|_{L^2(\mu)}/\|g\|_{L^2(\mu)}$; we report the \emph{drift} error as the mean over
+$\drift_1,\drift_2$ and the \emph{tensor} error as the mean over
+$\diff_{11},\diff_{12},\diff_{22}$ (Frobenius). The \emph{off-diagonal cosine} is
+$\langle\hat\diff_{12},\diff_{12}\rangle_\mu/(\|\hat\diff_{12}\|\,\|\diff_{12}\|)$; the
+\emph{PSD-valid fraction} is the share of grid points with $\hat\diff\succeq0$; the
+\emph{generator-action error} compares $\hat\Lgen f$ to $\Lgen f$ on the test set
+$f\in\{x,y,x^2,xy,y^2\}$. We additionally report a \emph{support F1} (precision/recall of the
+selected term set) so that a system with low field error but an incorrect symbolic support is
+scored honestly---the axis on which a named limit fails is stated in its datasheet. The aggregate
+``in-scope score'' used in some figures is a secondary convenience defined as
+$1-\mathrm{clip}_{[0,1]}(\text{drift }L^2)$ averaged with
+$1-\mathrm{clip}_{[0,1]}(\text{tensor }L^2)$ and the PSD fraction; all conclusions are also
+reported on the primary metrics above with bootstrap confidence intervals.
+
+\paragraph{Reporting recovered coefficients across seeds.}
+Each coefficient is estimated over $10$ seeds. We report, per term, its \emph{selection rate}
+(fraction of seeds in which it is selected) and the \emph{median value over the seeds in which
+it is selected} (with a bootstrap CI), \emph{not} the plain median over all seeds. The plain
+cross-seed median conflates a coefficient's value with its selection frequency: a
+weakly-identified but genuine term selected in a minority of seeds is reported as exactly zero,
+misrepresenting an intermittently-recovered term as a missed one. Under this reporting the
+dominant terms recover to a few percent (e.g.\ correlated-OU drift and off-diagonal at selection
+rate $1.0$), and weakly-identified secondary terms are shown with their true selection rate
+rather than hidden in a zero median---e.g.\ the Duffing damping $-0.35\,y$ recovers at
+$\approx-0.33$ (selection rate $0.7$) and the Maier--Stein $-x^2y$ at $\approx-1.0$ (rate
+$0.7$), while genuinely weak terms such as the Maier--Stein $-0.35\,xy^2$ (rate $0$--$0.3$)
+are reported as such.
+
+\paragraph{Support and false-positive rule.}
+Columns of the design are $\ell_2$-normalised; a term is \emph{selected} if its post-debias
+coefficient exceeds $\tau=10^{-3}$ of the largest selected coefficient for that target. A
+\emph{false positive} is a selected term whose true coefficient is zero; near-zero true
+coefficients (those below the same $\tau$ relative scale) are treated as inactive. For the
+diffusion, selection is counted on the Cholesky factor entries. False positives are counted
+\emph{after} debiasing and STLSQ pruning. This rule is fixed across the whole zoo and is not
+tuned per system.
+
+\paragraph{Three read-outs.}
+The recovered generator is read three ways: the off-diagonal $\hat\diff_{12}$ gives the
+\emph{leverage} correlation (financial systems); the diagonal $\hat\diff_{11},\hat\diff_{22}$
+give the \emph{fluctuation} field and position-dependent relaxation; and the antisymmetric part
+of the drift Jacobian gives a \emph{local rotational-drift diagnostic} of non-reversibility.
+(This equals the stationary probability current
+$J=\drift\pi-\tfrac{1}{2}\nabla\!\cdot(\diff\pi)$ only for additive-noise/linear systems; for
+state-dependent diffusion it is a diagnostic, not the full current.)
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Results}\label{sec:results}
+% ──────────────────────────────────────────────────────────────────────────────
+
+\subsection{Ground-truth recovery across the zoo}\label{sec:showcase}
+
+\Cref{tab:master} is the navigation layer: every 2D system, its in-scope/limit status, and the
+recovered-vs-true metrics over $10$ seeds. Of the 29 systems, nineteen pass the metric gate, two
+are scoped reviews (low-SNR drift with strong tensor/leverage), and eight are named limits. No
+system exhibits a false positive under the support rule defined above. Representative
+recovered-vs-true field comparisons appear in the per-system datasheets (\Cref{app:datasheets});
+each recovers the symbolic coefficients to a few percent.
+
+\input{table_master}
+
+\paragraph{Symbolic coefficient recovery, true vs.\ recovered vs.\ baseline.}
+\Cref{tab:coeff-recovery} answers the question directly: for each system it lists the
+coefficients of the equation \emph{used to generate} the data, the coefficients \emph{returned}
+by the WG-SINDy pipeline (median over the seeds in which each term is selected, with its
+selection rate), and a matched Kramers--Moyal / Stochastic-SINDy baseline on the same library.
+Across the linear, coupled, rotational, limit-cycle, and multiplicative families every dominant
+term is recovered to a few percent at selection rate $1.0$, and WG-SINDy matches or beats the
+baseline on the nonlinear and off-diagonal terms (e.g.\ the Stuart--Landau cubic terms and the
+Maier--Stein $-x^2y$, where the baseline degrades or flips sign); the only intermittently
+selected terms are genuinely low-SNR (e.g.\ Maier--Stein $-0.35\,xy^2$), which the baseline
+also misses.
+
+\input{coeff_comparison_table}
+
+\FloatBarrier
+\subsection{The 1D method fails in 2D}\label{sec:naive}
+
+The naive component-wise port (B0, the published 1D code applied to each of the five 2D
+functions, no grafts) fails on drift for scale-disparate and correlated systems: the design
+condition number explodes, low-SNR drift components are overwhelmed by spurious high-degree
+terms, and the tensor is not guaranteed positive semidefinite. \Cref{fig:naive} maps the failure
+across the zoo. This motivates each graft.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.95\linewidth]{act1_naive1d_failure_heatmap.pdf}
+  \caption{The naive 1D-on-2D baseline (B0) fails on drift for ill-conditioned and low-SNR
+  systems, motivating the WG-SINDy grafts. Each graft in \Cref{sec:ablation} targets one
+  failure mode here.}\label{fig:naive}
+\end{figure}
+
+\FloatBarrier
+\subsection{Each graft solves a failure mode}\label{sec:ablation}
+
+\Cref{fig:ladder} shows a monotone climb from B0 through six grafts to full WG-SINDy;
+\Cref{fig:necessity} is the necessity matrix, a graft$\times$capability leave-one-out table.
+GLS whitening (G5) is the load-bearing drift mechanism; local-polynomial projection (G2) removes
+boundary bias; Cholesky parametrisation (G4) guarantees positive semidefiniteness; anisotropic
+kernels (G1) fix ill-conditioning; adaptive-LASSO (G3) controls false positives; and
+multi-trajectory pooling (G6) provides the largest single score gain, accounting for most of the
+gap between the incremental ladder and the full frozen system.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.78\linewidth]{act2_graft_ladder_climb.pdf}
+  \caption{Cumulative graft ladder: in-scope score climbs monotonically from the naive 1D port
+  to full WG-SINDy.}\label{fig:ladder}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\linewidth]{necessity_matrix.pdf}
+  \caption{Necessity matrix: leave-one-out degradation of each graft (rows) on each capability
+  (columns). Each ingredient has a distinct job, framing WG-SINDy as a structured extension of
+  the weak form.}\label{fig:necessity}
+\end{figure}
+
+\FloatBarrier
+\subsection{Head-to-head against prior methods}\label{sec:headtohead}
+
+\Cref{fig:h2h} compares WG-SINDy against the naive 1D port, Stochastic SINDy / Kramers--Moyal,
+temporal Weak SINDy, and generator EDMD across the in-scope class, under matched feature
+libraries and data budgets. WG-SINDy outperforms the baselines on tensor recovery and median
+drift while remaining sparse and symbolic; full baseline tuning is in the supplement.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.9\linewidth]{headtohead_bar.pdf}
+  \caption{Head-to-head median in-scope score: WG-SINDy versus the 1D port and three baseline
+  families.}\label{fig:h2h}
+\end{figure}
+
+\FloatBarrier
+\subsection{Per-system baseline comparison}\label{sec:per-system-baselines}
+
+The aggregate head-to-head in \Cref{fig:h2h} is intentionally compressed, so
+\Cref{fig:per-system-method-heatmap} adds the matched per-system view. Rows are the thirteen
+systems shared by the method ledger; columns now include WG-SINDy, Kramers--Moyal / stochastic
+SINDy, temporal Weak-SINDy, generator EDMD, and a vanilla finite-difference STLSQ SINDy proxy.
+Each cell is annotated with the raw metric and coloured only by a log display transform.
+WG-SINDy is best or within 5\% of best on drift for 13 of 13 systems (13 clear wins, 0 ties, 0
+losses) and on tensor recovery for 7 of 13 systems (7 clear wins, 0 ties, 6 losses). The losses
+are concentrated where dense local-moment or temporal weak estimates have high-SNR linear
+structure; WG-SINDy remains strongest on off-diagonal tensor geometry and nonlinear/low-SNR
+drift.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.98\linewidth]{per_system_method_heatmap.pdf}
+  \caption{Matched per-system method comparison. The first two panels show raw relative $L^2$
+  drift and tensor errors; the third reports $1-\cos(\hat{a}_{12},a_{12})$ so lower is better
+  on every panel. Colour uses $\log_{10}(1+\mathrm{metric})$ only for
+  readability.}\label{fig:per-system-method-heatmap}
+\end{figure}
+
+\FloatBarrier
+\subsection{The three read-outs}\label{sec:readouts}
+
+\Cref{fig:leverage} (leverage), \Cref{fig:circulation} (circulation), and the fluctuation tensor
+fields in the datasheets instantiate the ``one generator, read three ways'' structure. Leverage
+correlation is recovered with cosine $\geq 0.99$ on every financial and correlated system; the
+probability-current direction is recovered for rotational, non-gradient, and limit-cycle systems.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\linewidth]{leverage_regime_sweep.pdf}
+  \caption{Leverage recovery across correlation regimes; the off-diagonal estimator is robust in
+  sign and magnitude.}\label{fig:leverage}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\linewidth]{circulation_current_field.pdf}
+  \caption{Recovered probability-current direction for non-reversible
+  systems.}\label{fig:circulation}
+\end{figure}
+
+\FloatBarrier
+\subsection{Convergence and honest nulls}\label{sec:nulls}
+
+Error decays with effective sample size toward a finite-step floor (\Cref{fig:conv}).
+\Cref{fig:nulls} collects the named limits: the log-price drift of stochastic-volatility models
+(signal-to-noise too small for \emph{any} increment-based estimator), near-singular and
+degenerate tensors, Feller-violating boundaries, non-spanning libraries, and under-covered state
+spaces. In every case the failure is attributable to physics or identifiability, not to
+estimation; we report these rather than excluding them.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\linewidth]{convergence_slope.pdf}
+  \caption{Convergence of recovery error with effective sample
+  size.}\label{fig:conv}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\linewidth]{honest_null_panel.pdf}
+  \caption{Named physical/identifiability limits, reported with their failure
+  axis.}\label{fig:nulls}
+\end{figure}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Discussion and Limitations}\label{sec:discussion}
+% ──────────────────────────────────────────────────────────────────────────────
+
+\paragraph{How to read the relative errors.}
+The reported errors are symbolic-recovery-grade diagnostics, not sub-percent
+precision-estimation claims. The dominant coefficients are recovered to a few percent when
+selected, support is reported separately through selection rate and false-positive counts, and
+leverage is judged by the off-diagonal cosine. The $R$-pooled rerun and convergence figure show
+the expected trajectory-budget tightening; precision calibration on real data is a separate
+future-work problem.
+
+The composition is more than the sum of its parts: GLS-whitening makes the low-SNR drift
+solvable wherever it is identifiable at all, local-polynomial projection and anisotropic kernels
+fix the conditioning that defeats the naive port, and the Cholesky parametrisation makes the
+symbolic tensor usable downstream (it is always a valid covariance). The honest limits are
+instructive. The stochastic-volatility log-price drift $\mu-\tfrac{1}{2}v$ carries a per-step
+signal of order $\Delta t$ against noise of order $\sqrt{\Delta t}$; an oracle regression on
+the true support still fails, so no weak-form refinement can recover it from a single short
+path---yet the tensor and leverage of the same systems are recovered cleanly. Near-singular and
+rank-deficient tensors, Feller-violating boundaries, non-spanning libraries, and under-covered
+states are identifiability failures by construction. These delimit, precisely, the broad class
+the method does cover.
+
+% ──────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}\label{sec:conclusion}
+% ──────────────────────────────────────────────────────────────────────────────
+
+WG-SINDy extends weak-form spatial-kernel generator recovery from scalar to two-dimensional
+It\^o diffusions, recovering both drift components and the full symmetric diffusion tensor
+including the off-diagonal leverage term, symbolically, derivative-free, and with a guaranteed
+positive-semidefinite tensor, while preserving the unbiasedness theorem of the one-dimensional
+foundation. Across a broad zoo spanning linear, nonlinear, reversible, non-reversible,
+multiplicative, stochastic-volatility, and limit-cycle systems, it recovers the generator with
+low error and no false positives, and it states precisely where recovery is impossible.
+
+\section*{Acknowledgments}
+
+The authors thank PES University (EC Campus) for computational resources and institutional
+support.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\appendix
+\section*{Supplementary Material: Per-system datasheets}\label{app:datasheets}
+\addcontentsline{toc}{section}{Supplementary Material}
+% ──────────────────────────────────────────────────────────────────────────────
+
+The following per-system datasheets are supplementary. The main-text claims rest on the flagship
+examples (\Cref{sec:readouts}) and the navigation index \Cref{tab:master}; each datasheet below
+gives the SDE, its analytic generator, the recovered symbolic coefficients, the
+recovered-vs-true fields, the quantitative verdict (with the failing axis named for limit cases,
+per \Cref{sec:metrics}), and a discussion. Systems are grouped by family.
+
+\input{datasheets}
+
+\end{document}

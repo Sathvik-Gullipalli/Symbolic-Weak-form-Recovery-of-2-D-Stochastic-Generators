@@ -1,0 +1,14 @@
+system,tier,n,median_inscope_score,median_objective_drift_rel_l2,median_diffusion_rel_l2,median_a12_cosine,median_psd_valid_pct,failure_marker,root_cause
+rotational_ou,2,10,0.8876250926636278,0.39884919218714887,0.1518764013667186,,1.0,False,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+spiral_sink_corr,2,10,0.840842907676931,0.6581995831959053,0.12787538058934445,0.9888113310985032,1.0,False,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+indep_ou,1,10,0.7556809468213554,1.127977052537426,0.13517505678613984,,1.0,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+nongradient_circulation,3,10,0.7330127686801307,1.0559053450685174,0.2692520198162095,,0.9940828402366864,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+coupled_ou,1,10,0.6839767916724414,1.4242263040194867,0.1962578208161908,,1.0,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+diag_multiplicative,4,10,0.6780728921964825,1.5280776691227955,0.17168577017138842,,1.0,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+heston_logsv,5,10,0.6571562291611119,1.6174389841211494,0.11321286550966553,0.9814084195144056,0.9437869822485208,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+correlated_ou,1,10,0.6038794839637676,1.8304164137571466,0.19224172257293687,0.9853373040928393,1.0,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+gradient_potential,3,10,0.5755229767439352,2.144657424436009,0.37183081416711405,,0.9526627218934911,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+heston_sv,5,10,0.5484870276056253,2.5606146959924763,0.27331991685334944,0.9625564007276888,0.9201183431952662,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+double_well_transverse,3,10,0.5436262719823489,2.9856297288287994,0.3541858871718524,,0.9881656804733728,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+nondiag_cholesky,4,10,0.43591480861836857,3.6634054682254407,0.594319299271473,0.13971528059570082,0.908284023668639,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension
+cir_pair,5,10,0.38583384011017813,8.208342174951975,0.7408363021674748,0.922165243025336,0.7307692307692308,True,raw-scale/local-constant/no-GLS/no-PSD naive 1D extension

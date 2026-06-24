@@ -1,0 +1,9 @@
+% Per-family datasheet files. Guarded so the paper compiles even while families are
+% still being written (resume-safe). Create the missing ds_*.tex per V8_WRITING_STATUS.md.
+\IfFileExists{ds_linear.tex}{\input{ds_linear}}{}
+\IfFileExists{ds_rotational.tex}{\input{ds_rotational}}{}
+\IfFileExists{ds_bistable.tex}{\input{ds_bistable}}{}
+\IfFileExists{ds_multiplicative.tex}{\input{ds_multiplicative}}{}
+\IfFileExists{ds_financial.tex}{\input{ds_financial}}{}
+\IfFileExists{ds_limitcycle.tex}{\input{ds_limitcycle}}{}
+\IfFileExists{ds_limits.tex}{\input{ds_limits}}{}

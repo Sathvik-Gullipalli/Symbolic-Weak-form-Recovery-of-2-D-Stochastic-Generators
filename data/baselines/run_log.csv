@@ -1,0 +1,2 @@
+profile,systems,seeds,freeze_rows,headtohead_rows,ladder_rows,necessity_rows,showcase_rows,runtime_sec,finalize_runtime_sec,runtime_basis
+full,13,10,390,780,910,910,130,412.7709731470095,381.1243656540173,"max(previous runtime_sec, current process runtime); resume finalization may be shorter than original wall time"

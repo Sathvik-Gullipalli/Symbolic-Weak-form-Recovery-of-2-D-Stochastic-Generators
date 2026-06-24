@@ -1,0 +1,32 @@
+% Auto-generated tight datasheets. Coefficients live in the aggregate R32 table. Source: results/v10/coeff_recovery_R32.csv
+\paragraph{Stochastic limit cycles}\;
+
+\subsection{Van der Pol}\label{sec:v62-van-der-pol}
+\paragraph{Context.} The Van der Pol oscillator is the archetype of a self-sustained relaxation oscillation, originating in electronic circuits and reused for cardiac and neural rhythms. It is the first demonstration that the weak-form recovery extends to limit-cycle dynamics, a regime absent from the one-dimensional benchmarks: trajectories concentrate on a closed attractor, so the cubic nonlinear-damping term $-\mu x^2y$ is recovered from dense repeated traversal of the cycle even though the rest of phase space is sparsely sampled.
+\paragraph{System.} $$\mathrm{d}X=Y\,\mathrm{d}t,\ \mathrm{d}Y=(\mu(1-X^2)Y-X)\mathrm{d}t+\sigma\mathrm{d}W,\ \mu=1.2.$$
+\paragraph{Generator.} Self-sustained limit cycle; the cubic cross term $-\mu x^2y$ is the nonlinear damping. Tight repeated sampling on the cycle aids recovery.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.066$ and the diffusion tensor at $0.040$ relative error; the recovered drift reproduces the limit-cycle geometry and the oscillation frequency. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_van_der_pol.pdf}
+\caption{Van der Pol: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.066$, tensor rel-$L^2=0.040$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Stuart--Landau}\label{sec:v62-stuart-landau}
+\paragraph{Context.} The Stuart--Landau equation is the universal normal form of a supercritical Hopf bifurcation, describing the generic onset of oscillation. It combines cubic radial damping with a pure rotation, so it simultaneously exercises the nonlinear-drift and circulation capabilities; its rotational symmetry gives uniform angular coverage of the limit cycle and yields the cleanest oscillatory recovery in the study.
+\paragraph{System.} $$\drift=((\lambda-r^2)X-\omega Y,\ \omega X+(\lambda-r^2)Y),\ r^2=X^2+Y^2.$$
+\paragraph{Generator.} Supercritical Hopf normal form: cubic radial damping ($x^3,xy^2,x^2y,y^3$) plus linear rotation $\pm\omega$; rotation-symmetric sampling gives clean recovery.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.126$ and the diffusion tensor at $0.018$ relative error; the recovered drift reproduces the limit-cycle geometry and the oscillation frequency. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_stuart_landau.pdf}
+\caption{Stuart--Landau: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.126$, tensor rel-$L^2=0.018$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Brusselator}\label{sec:v62-brusselator}
+\paragraph{Context.} The Brusselator is a classic model of an autocatalytic chemical oscillator and a staple of reaction--diffusion theory. Its drift is polynomial with a shared autocatalytic $x^2y$ term of opposite sign in the two species; recovering this mass-action structure from data demonstrates that the method discovers chemically interpretable kinetics, not merely abstract polynomials.
+\paragraph{System.} $$\drift=(A-(B+1)X+X^2Y,\ BX-X^2Y),\ A=1,B=2.6,\ \diff=0.0144 I.$$
+\paragraph{Generator.} Chemical limit cycle with the autocatalytic $x^2y$ term shared (opposite signs) across components.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.013$ and the diffusion tensor at $0.067$ relative error; the recovered drift reproduces the limit-cycle geometry and the oscillation frequency. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_brusselator.pdf}
+\caption{Brusselator: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.013$, tensor rel-$L^2=0.067$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip

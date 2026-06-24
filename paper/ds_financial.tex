@@ -1,0 +1,113 @@
+% Auto-generated tight datasheets. Coefficients live in the aggregate R32 table. Source: results/v10/coeff_recovery_R32.csv
+\paragraph{Financial / stochastic-volatility systems}\;
+
+\subsection{Log-Heston}\label{sec:v62-heston-logsv}
+\paragraph{Context.} The Heston model is a cornerstone of mathematical finance, with stochastic instantaneous variance driving the asset. In the numerically stable log-price coordinate it is the flagship leverage system: the negative price--variance correlation $\rho$ enters only through the off-diagonal $\diff_{12}=\rho\xi v$, the single parameter that shapes the implied-volatility skew used in option pricing. It also exposes the central honest limit, the risk-neutral log-price drift $\mu-\tfrac12 v$, whose per-step signal is some four orders of magnitude below the diffusion noise.
+\paragraph{System.} $$\mathrm{d}X=(\mu-\tfrac12 v)\mathrm{d}t+\sqrt{v}\mathrm{d}W_1,\ \mathrm{d}v=\kappa(\theta-v)\mathrm{d}t+\xi\sqrt{v}\mathrm{d}W_2.$$
+\paragraph{Generator.} Flagship leverage system. $\drift_v=\kappa(\theta-v)$ variance mean reversion; $\diff_{11}=v$, $\diff_{22}=\xi^2 v$, $\diff_{12}=\rho\xi v$ leverage. Log-price drift $\mu-\tfrac12 v$ is the low-SNR null.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.143$ and the diffusion tensor at $0.054$ relative error, with off-diagonal (leverage) cosine $0.999$; the off-diagonal yields the price--variance leverage correlation alongside the variance mean-reversion and vol-of-vol. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.143 & 0.054 & 1.3e-03 & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.486 & 0.038 & 1.5e-03 & 0.994 \\
+Temporal Weak-SINDy & 1.00 & 0.080 & 1.8e-03 & 1.00 \\
+gEDMD & 0.545 & 0.074 & 4.7e-03 & 0.926 \\
+Vanilla SINDy (FD-STLSQ) & 1.62 & 0.113 & 0.019 & 0.944 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_heston_logsv.pdf}
+\caption{Log-Heston: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.143$, tensor rel-$L^2=0.054$, $a_{12}$ cosine $0.999$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Heston $(S,V)$}\label{sec:v62-heston-sv}
+\paragraph{Context.} The raw-price formulation of the same Heston dynamics, retained to show the leverage result is not an artefact of the log transform. Its diagonal variance $S^2v$ spans an enormous dynamic range, the very ill-conditioning that motivates practitioners to take logs; recovering the leverage and variance generator here demonstrates that the anisotropic kernels and whitening absorb extreme coordinate scaling without manual transformation.
+\paragraph{System.} $$\mathrm{d}S=\mu S\,\mathrm{d}t+S\sqrt{v}\mathrm{d}W_1,\ \mathrm{d}v=\kappa(\theta-v)\mathrm{d}t+\xi\sqrt{v}\mathrm{d}W_2.$$
+\paragraph{Generator.} Raw-price Heston: $\diff_{11}=S^2v$ (large dynamic range), $\diff_{12}=\rho\xi Sv$ leverage. Recovered despite the scale; price drift $\mu S$ is the low-SNR null.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.273$ and the diffusion tensor at $0.089$ relative error, with off-diagonal (leverage) cosine $0.993$; the off-diagonal yields the price--variance leverage correlation alongside the variance mean-reversion and vol-of-vol. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.276 & 0.089 & 7.3e-03 & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.727 & 0.115 & 4.9e-03 & 0.973 \\
+Temporal Weak-SINDy & 1.12 & 0.152 & 4.6e-03 & 0.938 \\
+gEDMD & 1.15 & 0.151 & 9.3e-03 & 0.923 \\
+Vanilla SINDy (FD-STLSQ) & 2.56 & 0.273 & 0.037 & 0.920 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_heston_sv.pdf}
+\caption{Heston $(S,V)$: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.273$, tensor rel-$L^2=0.089$, $a_{12}$ cosine $0.993$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{CIR pair}\label{sec:v62-cir-pair}
+\paragraph{Context.} A pair of correlated Cox--Ingersoll--Ross processes, the building block of multi-factor interest-rate and competing-population models. Its off-diagonal diffusion is genuinely non-polynomial ($\propto\sqrt{xy}$), so it tests whether the estimator accommodates a square-root feature library; both square-root mean-reverting drifts are recovered, unlike the stochastic-volatility log-price drift, because mean reversion carries adequate signal.
+\paragraph{System.} $$\mathrm{d}X=\kappa(\theta-X)\mathrm{d}t+\xi\sqrt{X}\mathrm{d}W_1,\ \mathrm{d}Y=\kappa(\theta-Y)\mathrm{d}t+\xi\sqrt{Y}\mathrm{d}W_2.$$
+\paragraph{Generator.} Correlated square-root processes; $\diff_{12}=\rho\xi^2\sqrt{xy}$ needs the square-root library F. Both mean-reverting drifts recover.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.393$ and the diffusion tensor at $0.116$ relative error, with off-diagonal (leverage) cosine $0.995$; the off-diagonal yields the price--variance leverage correlation alongside the variance mean-reversion and vol-of-vol. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.392 & 0.117 & 4.8e-03 & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 1.64 & 0.213 & 4.7e-03 & 0.938 \\
+Temporal Weak-SINDy & 1.03 & 0.203 & 5.7e-03 & 0.970 \\
+gEDMD & 8.36 & 1.29 & 0.211 & 0.784 \\
+Vanilla SINDy (FD-STLSQ) & 8.21 & 0.741 & 0.078 & 0.731 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_cir_pair.pdf}
+\caption{CIR pair: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.393$, tensor rel-$L^2=0.116$, $a_{12}$ cosine $0.995$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{SABR}\label{sec:v62-sabr}
+\paragraph{Context.} The SABR model is an industry-standard stochastic-volatility specification for interest-rate and FX smiles. It is a driftless martingale with power-law ($F^\beta$) diffusion, so it tests two edges at once: a generator with no drift to recover (which must come back as exactly zero) and a fractional-power diffusion that a polynomial library can only approximate, making it a named limit on the tensor while the leverage sign is still recovered.
+\paragraph{System.} $$\mathrm{d}F=\sigma F^\beta\mathrm{d}W_1,\ \mathrm{d}\sigma=\nu\sigma\mathrm{d}W_2,\ \beta=0.5.$$
+\paragraph{Generator.} Driftless martingale with power-law diffusion; leverage cosine recovers, the $F^{2\beta}$ power-law is only approximately spanned. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=--$ and the diffusion tensor at $0.195$ relative error, with off-diagonal (leverage) cosine $0.990$; the off-diagonal yields the price--variance leverage correlation alongside the variance mean-reversion and vol-of-vol. This is a named limit (fragile physics or identifiability limit): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_sabr.pdf}
+\caption{SABR: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=--$, tensor rel-$L^2=0.195$, $a_{12}$ cosine $0.990$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip
+
+\subsection{Correlated 2D GBM}\label{sec:v62-gbm-2d}
+\paragraph{Context.} Two correlated geometric Brownian motions, the canonical multi-asset price model underlying portfolio and basket-option risk. The asset--asset correlation lives in the off-diagonal $\diff_{12}=\rho\sigma_1\sigma_2 S_1S_2$, which is recovered cleanly; the per-asset drifts $\mu_iS_i$ are dominated by the diffusion and share the low signal-to-noise character of the Heston log-price drift, so the system is reported as a scoped review.
+\paragraph{System.} $$\mathrm{d}S_i=\mu_i S_i\,\mathrm{d}t+\sigma_i S_i\mathrm{d}W_i,\ \mathrm{d}W_1\mathrm{d}W_2=\rho\,\mathrm{d}t.$$
+\paragraph{Generator.} Two correlated lognormal assets; tensor and $S_1S_2$ leverage recover (cosine $0.997$); the small $\mu_i S_i$ drift is low-SNR. Scoped review.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=2.492$ and the diffusion tensor at $0.096$ relative error, with off-diagonal (leverage) cosine $0.997$; the off-diagonal yields the price--variance leverage correlation alongside the variance mean-reversion and vol-of-vol. Scoped review (metric gate not met but truth is representable): the truth lies in the library but the metric gate is not met, typically a low-SNR drift component.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_gbm_2d.pdf}
+\caption{Correlated 2D GBM: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=2.492$, tensor rel-$L^2=0.096$, $a_{12}$ cosine $0.997$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{SCOPED_REVIEW}.
+\medskip
+
+\subsection{Two-factor Vasicek}\label{sec:v62-two-factor-vasicek}
+\paragraph{Context.} A coupled two-factor Vasicek short-rate model, the affine-rates analogue of coupled OU at realistic (micro) scale. Its constant diffusion is so small that relative tensor error becomes a degenerate metric; the affine coupled drift, which is the financially relevant object for term-structure work, is recovered, so it is flagged as a scoped review rather than a pass.
+\paragraph{System.} $$\drift=(\kappa_1(\theta_1-X)+c_{12}(Y-\theta_2),\ \kappa_2(\theta_2-Y)+c_{21}(X-\theta_1)).$$
+\paragraph{Generator.} Affine coupled short-rate model; constant micro-scale tensor (relative metric degenerate, absolute error small). Scoped review.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.350$ and the diffusion tensor at $1.000$ relative error; the recovered generator gives the relaxation rates and cross-coupling (and, where present, the leverage correlation). Scoped review (metric gate not met but truth is representable): the truth lies in the library but the metric gate is not met, typically a low-SNR drift component.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_two_factor_vasicek.pdf}
+\caption{Two-factor Vasicek: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.350$, tensor rel-$L^2=1.000$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{SCOPED_REVIEW}.
+\medskip

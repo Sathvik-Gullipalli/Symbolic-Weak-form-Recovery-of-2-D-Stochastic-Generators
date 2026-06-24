@@ -1,0 +1,21 @@
+# Minimal smoke schema. Full campaign configs extend these keys.
+name: core2
+system:
+  name: correlated_ou
+  params: {}
+library: A
+kernel:
+  center_scheme: quantile_grid
+  M: 100
+  bandwidth_multiplier: 1.5
+regression:
+  method: stlsq
+simulation:
+  dt: 0.01
+  n_steps: 8000
+  seeds: [10]
+ablations:
+  bias_correct: true
+  eiv_correct: false
+output:
+  results_subdir: 2d_benchmarks

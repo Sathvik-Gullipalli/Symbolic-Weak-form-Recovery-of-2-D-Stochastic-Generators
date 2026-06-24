@@ -1,0 +1,17 @@
+source_artifact,tag,experiment,system,library,regressor,varying,dt,T_eff,R,seed,run,target,error,log_slope,floor_error
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,12.0,1,7101,0,drift,2.795033978832545,-0.6466914362737642,0.7111226699232365
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,12.0,1,7101,0,diffusion,0.3728673316136169,-1.4630271422041135,0.029274589416655828
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,24.0,1,7101,1,drift,2.0525588576788754,-0.6466914362737642,0.7111226699232365
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,24.0,1,7101,1,diffusion,0.10678755278433925,-1.4630271422041135,0.029274589416655828
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,48.0,1,7101,2,drift,1.8897184276770786,-0.6466914362737642,0.7111226699232365
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,48.0,1,7101,2,diffusion,0.036110259182814554,-1.4630271422041135,0.029274589416655828
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,72.0,1,7101,3,drift,0.7111226699232365,-0.6466914362737642,0.7111226699232365
+results/convergence_slopes.csv,convergence,convergence,correlated_ou,A,lasso_stlsq,T,0.01,72.0,1,7101,3,diffusion,0.029274589416655828,-1.4630271422041135,0.029274589416655828
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,12.0,1,7101,0,drift,2.597642997873373,-0.615365829627668,0.8326025080062425
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,12.0,1,7101,0,diffusion,0.2378301575376813,-0.4408711767101773,0.09904752187336789
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,24.0,1,7101,1,drift,1.2416929044244485,-0.615365829627668,0.8326025080062425
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,24.0,1,7101,1,diffusion,0.14868719630912036,-0.4408711767101773,0.09904752187336789
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,48.0,1,7101,2,drift,0.9669280340571731,-0.615365829627668,0.8326025080062425
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,48.0,1,7101,2,diffusion,0.09904752187336789,-0.4408711767101773,0.09904752187336789
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,72.0,1,7101,3,drift,0.8326025080062425,-0.615365829627668,0.8326025080062425
+results/convergence_slopes.csv,convergence,convergence,diag_multiplicative,A,lasso_stlsq,T,0.01,72.0,1,7101,3,diffusion,0.11690916007766343,-0.4408711767101773,0.09904752187336789

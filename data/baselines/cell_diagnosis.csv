@@ -1,0 +1,78 @@
+system,metric,value,threshold,oracle_value,diagnosis_class,evidence,action
+bad_coverage,drift_rel_l2,3.917022655295965,1.0,1.5774171030959998,real_recovery_failure,registry=FRAGILE_FAIL; oracle=1.577; value=3.917,keep number; route to named-null segment; display with split/log-clipped heatmap
+bad_coverage,diffusion_rel_l2,1.3550455879469807,0.75,0.9460584106546244,real_recovery_failure,registry=FRAGILE_FAIL; oracle=0.9461; value=1.355,keep number; route to named-null segment; display with split/log-clipped heatmap
+bad_coverage,psd_valid_pct,0.1107266435986159,0.95,,real_recovery_failure,registry=FRAGILE_FAIL; oracle=nan; value=0.1107,keep number; route to named-null segment; display with split/log-clipped heatmap
+cir_pair,drift_rel_l2,4.611060591070795,1.0,1.5189140170085655,real_recovery_failure,registry=FRAGILE; oracle=1.519; value=4.611,keep number; route to named-null segment; display with split/log-clipped heatmap
+cir_pair,diffusion_rel_l2,0.3276683166664433,0.75,0.0447292596406097,ok,within audit threshold,no action
+cir_pair,a12_cosine,0.9677601571676422,0.85,0.9999999999999998,ok,within audit threshold,no action
+cir_pair,psd_valid_pct,0.8512110726643599,0.95,,real_recovery_failure,registry=FRAGILE; oracle=nan; value=0.8512,keep number; route to named-null segment; display with split/log-clipped heatmap
+correlated_ou,drift_rel_l2,0.9906759339733916,1.0,0.2301681773301626,ok,within audit threshold,no action
+correlated_ou,diffusion_rel_l2,0.0823324670805397,0.75,0.0222753774570958,ok,within audit threshold,no action
+correlated_ou,a12_cosine,0.9999999999999996,0.85,0.9999999999999998,ok,within audit threshold,no action
+correlated_ou,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+coupled_ou,drift_rel_l2,0.6340378420739899,1.0,0.2963738666933918,ok,within audit threshold,no action
+coupled_ou,diffusion_rel_l2,0.019479481696785,0.75,0.0169343851726193,ok,within audit threshold,no action
+coupled_ou,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+diag_multiplicative,drift_rel_l2,0.386695681600217,1.0,0.1528606175884807,ok,within audit threshold,no action
+diag_multiplicative,diffusion_rel_l2,0.1090375070629315,0.75,0.0391090882293085,ok,within audit threshold,no action
+diag_multiplicative,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+double_well,drift_rel_l2,0.3987741719099824,1.0,0.4886075134142316,ok,within audit threshold,no action
+double_well,diffusion_rel_l2,0.0287886988245489,0.75,0.023879656667959,ok,within audit threshold,no action
+double_well,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+double_well_transverse,drift_rel_l2,0.5164252153244245,1.0,0.2024899817300124,ok,within audit threshold,no action
+double_well_transverse,diffusion_rel_l2,0.0503908347977329,0.75,0.0249048199052571,ok,within audit threshold,no action
+double_well_transverse,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+gradient_potential,drift_rel_l2,0.633807571857996,1.0,0.282103902602052,ok,within audit threshold,no action
+gradient_potential,diffusion_rel_l2,0.038925424260743,0.75,0.0161540005327414,ok,within audit threshold,no action
+gradient_potential,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+heston_logsv,drift_rel_l2,1.8180035945313548,1.0,1.372666357128063,real_recovery_failure,registry=STRONG; oracle=1.373; value=1.818,keep number; route to named-null segment; display with split/log-clipped heatmap
+heston_logsv,diffusion_rel_l2,0.0400187883192218,0.75,0.0323250520646778,ok,within audit threshold,no action
+heston_logsv,a12_cosine,0.9912889058439772,0.85,0.9999602241576556,ok,within audit threshold,no action
+heston_logsv,psd_valid_pct,0.9619377162629758,0.95,,ok,within audit threshold,no action
+heston_sv,drift_rel_l2,31.525142584400317,1.0,11.076999490037942,real_recovery_failure,registry=FRAGILE; oracle=11.08; value=31.53,keep number; route to named-null segment; display with split/log-clipped heatmap
+heston_sv,diffusion_rel_l2,0.7815135046984979,0.75,0.6060734244472701,real_recovery_failure,registry=FRAGILE; oracle=0.6061; value=0.7815,keep number; route to named-null segment; display with split/log-clipped heatmap
+heston_sv,a12_cosine,0.7692745133854605,0.85,0.9683950434356428,real_recovery_failure,registry=FRAGILE; oracle=0.9684; value=0.7693,keep number; route to named-null segment; display with split/log-clipped heatmap
+heston_sv,psd_valid_pct,0.71280276816609,0.95,,real_recovery_failure,registry=FRAGILE; oracle=nan; value=0.7128,keep number; route to named-null segment; display with split/log-clipped heatmap
+indep_ou,drift_rel_l2,0.250592893906725,1.0,0.1247907134998291,ok,within audit threshold,no action
+indep_ou,diffusion_rel_l2,0.0341389731429967,0.75,0.0278964918848358,ok,within audit threshold,no action
+indep_ou,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+multiplicative,drift_rel_l2,0.5666878847710176,1.0,0.2827017872156094,ok,within audit threshold,no action
+multiplicative,diffusion_rel_l2,0.0920925911204608,0.75,0.0763646528540812,ok,within audit threshold,no action
+multiplicative,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+near_boundary_heston,drift_rel_l2,8.727418914735624,1.0,8.746150701778804,real_recovery_failure,registry=FRAGILE; oracle=8.746; value=8.727,keep number; route to named-null segment; display with split/log-clipped heatmap
+near_boundary_heston,diffusion_rel_l2,0.1151344288699434,0.75,0.0550128523083917,ok,within audit threshold,no action
+near_boundary_heston,a12_cosine,0.9602842788367704,0.85,0.9999749519291952,ok,within audit threshold,no action
+near_boundary_heston,psd_valid_pct,0.9411764705882352,0.95,,real_recovery_failure,registry=FRAGILE; oracle=nan; value=0.9412,keep number; route to named-null segment; display with split/log-clipped heatmap
+near_singular,drift_rel_l2,8.428734292506997,1.0,0.299930631449319,real_recovery_failure,registry=FRAGILE; oracle=0.2999; value=8.429,keep number; route to named-null segment; display with split/log-clipped heatmap
+near_singular,diffusion_rel_l2,1.5881641386701066,0.75,0.1813899771094993,real_recovery_failure,registry=FRAGILE; oracle=0.1814; value=1.588,keep number; route to named-null segment; display with split/log-clipped heatmap
+near_singular,a12_cosine,0.8612835511884385,0.85,0.9830197723469732,ok,within audit threshold,no action
+near_singular,psd_valid_pct,0.5190311418685121,0.95,,real_recovery_failure,registry=FRAGILE; oracle=nan; value=0.519,keep number; route to named-null segment; display with split/log-clipped heatmap
+nondiag_cholesky,drift_rel_l2,0.1844595785293974,1.0,0.0964363601803152,ok,within audit threshold,no action
+nondiag_cholesky,diffusion_rel_l2,0.0798989273376405,0.75,0.0239937974871458,ok,within audit threshold,no action
+nondiag_cholesky,a12_cosine,0.9813695052170374,0.85,0.9873558256935882,ok,within audit threshold,no action
+nondiag_cholesky,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+nongradient_circulation,drift_rel_l2,0.4914556881747393,1.0,0.2160829671065809,ok,within audit threshold,no action
+nongradient_circulation,diffusion_rel_l2,0.0362472251778825,0.75,0.0168829147319986,ok,within audit threshold,no action
+nongradient_circulation,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+nonpoly_drift,drift_rel_l2,0.3400322654364645,1.0,0.1707886325660775,ok,within audit threshold,no action
+nonpoly_drift,diffusion_rel_l2,0.0482389776458808,0.75,0.0141847374142306,ok,within audit threshold,no action
+nonpoly_drift,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+ou,drift_rel_l2,0.1974726229068617,1.0,0.1705105097853627,ok,within audit threshold,no action
+ou,diffusion_rel_l2,0.0274218877156054,0.75,0.0260499926161837,ok,within audit threshold,no action
+ou,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+partial_observation,drift_rel_l2,0.1392492766962284,1.0,0.133981901335747,ok,within audit threshold,no action
+partial_observation,diffusion_rel_l2,0.015366800782486,0.75,0.0150612556388212,ok,within audit threshold,no action
+partial_observation,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+rotational_ou,drift_rel_l2,0.13333229919908,1.0,0.0973369292557971,ok,within audit threshold,no action
+rotational_ou,diffusion_rel_l2,0.0258357495645634,0.75,0.0239096443533956,ok,within audit threshold,no action
+rotational_ou,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+spiral_sink_corr,drift_rel_l2,0.207714645510465,1.0,0.1025001385450128,ok,within audit threshold,no action
+spiral_sink_corr,diffusion_rel_l2,0.0307114080110487,0.75,0.0278850969330294,ok,within audit threshold,no action
+spiral_sink_corr,a12_cosine,0.9999999999999996,0.85,1.0,ok,within audit threshold,no action
+spiral_sink_corr,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+too_large_dt,drift_rel_l2,0.5994730245314793,1.0,0.3247347148931025,ok,within audit threshold,no action
+too_large_dt,diffusion_rel_l2,0.1920567659314888,0.75,0.1335245879526578,ok,within audit threshold,no action
+too_large_dt,psd_valid_pct,1.0,0.95,,ok,within audit threshold,no action
+underdamped_langevin,drift_rel_l2,0.2690142882047455,1.0,0.168703107052541,ok,within audit threshold,no action
+underdamped_langevin,diffusion_rel_l2,0.5094422323248805,0.75,0.5111188603936099,ok,within audit threshold,no action
+underdamped_langevin,psd_valid_pct,0.5294117647058824,0.95,,real_recovery_failure,registry=FRAGILE; oracle=nan; value=0.5294,keep number; route to named-null segment; display with split/log-clipped heatmap

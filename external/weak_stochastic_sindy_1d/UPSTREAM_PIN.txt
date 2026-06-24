@@ -1,0 +1,7 @@
+name: Weak-Stochastic-SINDy
+url: https://github.com/eshwarRA/Weak-Stochastic-SINDy
+path: external/weak_stochastic_sindy_1d
+commit: 119d06f424190775d58a544d14051836d3ee274d
+license_file: external/weak_stochastic_sindy_1d/LICENSE
+license: GPL-2.0
+clone_status: cloned

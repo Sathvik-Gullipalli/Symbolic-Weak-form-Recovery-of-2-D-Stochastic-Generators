@@ -1,0 +1,83 @@
+% Auto-generated tight datasheets. Coefficients live in the aggregate R32 table. Source: results/v10/coeff_recovery_R32.csv
+\paragraph{Rotational and non-reversible systems}\;
+
+\subsection{Rotational OU}\label{sec:v62-rotational-ou}
+\paragraph{Context.} The prototypical \emph{non-reversible} linear diffusion: a damped rotation about the origin. It is the linear template for every circulation result in the paper. The drift Jacobian carries a non-zero antisymmetric part $\omega J$, producing a steady probability current that circulates without ever relaxing to detailed balance; the radial damping $\alpha$ fixes the spectral gap and $\omega$ the rotation frequency, both of which must be read off the recovered generator.
+\paragraph{System.} $$\mathrm{d}(X,Y)^\top=\begin{psmallmatrix}-1&-2\\2&-1\end{psmallmatrix}(X,Y)^\top\mathrm{d}t+\mathrm{d}W.$$
+\paragraph{Generator.} Damped rotation: $\alpha=1$ sets the radial decay (spectral gap), $\omega=2$ the rotation; antisymmetric drift gives the rotational-drift diagnostic. $\diff=I$.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.058$ and the diffusion tensor at $0.038$ relative error; the antisymmetric part of the recovered drift gives the rotational-drift (circulation) diagnostic, while the symmetric part is the relaxation. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.058 & 0.038 & -- & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.242 & 0.059 & -- & 1.00 \\
+Temporal Weak-SINDy & 0.460 & 0.043 & -- & 1.00 \\
+gEDMD & 0.237 & 0.047 & -- & 1.00 \\
+Vanilla SINDy (FD-STLSQ) & 0.399 & 0.152 & -- & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_rotational_ou.pdf}
+\caption{Rotational OU: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.058$, tensor rel-$L^2=0.038$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Spiral sink + correlated noise}\label{sec:v62-spiral-sink-corr}
+\paragraph{Context.} A stress test that switches on both two-dimensional channels at once: a non-reversible rotational drift \emph{and} a correlated (off-diagonal) diffusion. It probes whether the shared design matrix entangles the drift and tensor estimates or keeps them separable, since recovering the rotation and the noise correlation simultaneously is exactly the regime where a naive estimator confounds the two.
+\paragraph{System.} $$\drift=(-X-1.5Y,\,1.5X-Y),\quad \diff_{12}=\rho\sigma_1\sigma_2=-0.40.$$
+\paragraph{Generator.} Non-reversible rotation and correlated noise together: exercises the rotational-drift diagnostic and the leverage channel at once.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.078$ and the diffusion tensor at $0.043$ relative error, with off-diagonal (leverage) cosine $1.000$; the antisymmetric part of the recovered drift gives the rotational-drift (circulation) diagnostic, while the symmetric part is the relaxation. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.078 & 0.043 & 0 & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.316 & 0.038 & 5.6e-16 & 1.00 \\
+Temporal Weak-SINDy & 0.650 & 0.031 & 0 & 1.00 \\
+gEDMD & 0.313 & 0.030 & 6.7e-04 & 1.00 \\
+Vanilla SINDy (FD-STLSQ) & 0.658 & 0.128 & 0.011 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_spiral_sink_corr.pdf}
+\caption{Spiral sink + correlated noise: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.078$, tensor rel-$L^2=0.043$, $a_{12}$ cosine $1.000$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Non-gradient circulation}\label{sec:v62-nongradient-circulation}
+\paragraph{Context.} A bistable energy landscape with an added non-conservative circulation, $\drift=-\nabla V+\omega J\nabla V$. It is the nonlinear counterpart of rotational OU and the central test of the Helmholtz decomposition: the method must split the recovered drift into a conservative part that rebuilds the double-well potential and a rotational part that quantifies the broken detailed balance, certifying irreversibility directly from a single trajectory.
+\paragraph{System.} $$\drift=-\nabla V+\omega J\nabla V,\ V=\tfrac14(x^2-1)^2+\tfrac12 y^2+\tfrac14 x^2y^2.$$
+\paragraph{Generator.} Same bistable potential as the gradient case but with an added curl $\omega J\nabla V$; the conservative and rotational drift parts are recovered separately.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.239$ and the diffusion tensor at $0.024$ relative error; the antisymmetric part of the recovered drift gives the rotational-drift (circulation) diagnostic, while the symmetric part is the relaxation. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.241 & 0.024 & -- & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.377 & 0.085 & -- & 1.00 \\
+Temporal Weak-SINDy & 0.833 & 0.023 & -- & 1.00 \\
+gEDMD & 0.465 & 0.058 & -- & 1.00 \\
+Vanilla SINDy (FD-STLSQ) & 1.06 & 0.269 & -- & 0.994 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_nongradient_circulation.pdf}
+\caption{Non-gradient circulation: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.239$, tensor rel-$L^2=0.024$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip

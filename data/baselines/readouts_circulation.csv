@@ -1,0 +1,6 @@
+source_artifact,tag,experiment,system,omega,library,current_cosine,irreversibility_scalar,status
+results/circulation/circ2_current_field.csv,circulation_current_field,circ2_current_field,rotational_ou,0.5,A,1.0000000000000002,0.6505255037147403,VALIDATED_POSITIVE
+results/circulation/circ2_current_field.csv,circulation_current_field,circ2_current_field,rotational_ou,1.0,A,1.0000000000000002,1.507150406636432,VALIDATED_POSITIVE
+results/circulation/circ2_current_field.csv,circulation_current_field,circ2_current_field,rotational_ou,2.0,A,1.0000000000000004,2.783675934695814,VALIDATED_POSITIVE
+results/circulation/circ2_current_field.csv,circulation_current_field,circ2_current_field,rotational_ou,4.0,A,0.9999999999999996,5.4925592422379035,VALIDATED_POSITIVE
+results/circulation/circ2_current_field.csv,circulation_current_field,circ2_current_field,nongradient_circulation,1.0,B,-0.7207482875895701,0.10334537215394417,DIAGNOSTIC_NONLINEAR_CURRENT

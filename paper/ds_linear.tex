@@ -1,0 +1,56 @@
+% Auto-generated tight datasheets. Coefficients live in the aggregate R32 table. Source: results/v10/coeff_recovery_R32.csv
+\paragraph{Linear Ornstein--Uhlenbeck systems}\;
+
+\subsection{Correlated OU}\label{sec:v62-correlated-ou}
+\paragraph{Context.} The Ornstein--Uhlenbeck process is the canonical mean-reverting diffusion and the natural two-dimensional starting point. Here the two coordinates relax independently but are driven by \emph{correlated} Brownian motions, so the coupling lives entirely in the diffusion tensor rather than the drift. It is the simplest system in which a constant off-diagonal $\diff_{12}$ must be recovered, and it isolates the cross-variation channel that the one-dimensional theory never exercises: any spurious off-diagonal here would be a false leverage signal, so it is also a strict false-positive control.
+\paragraph{System.} $$\mathrm{d}X=-X\,\mathrm{d}t+\sigma_1\mathrm{d}W_1,\quad \mathrm{d}Y=-1.5Y\,\mathrm{d}t+\sigma_2\mathrm{d}W_2,\ \mathrm{d}W_1\mathrm{d}W_2=\rho\,\mathrm{d}t.$$
+\paragraph{Generator.} Diagonal mean reversion with correlated noise ($\rho=-0.6$). $\drift$ pulls each coordinate to zero; the constant off-diagonal $\diff_{12}=\rho\sigma_1\sigma_2=-0.48$ is the leverage channel.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.136$ and the diffusion tensor at $0.051$ relative error, with off-diagonal (leverage) cosine $1.000$; the recovered generator gives the relaxation rates and cross-coupling (and, where present, the leverage correlation). The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.136 & 0.051 & 4.4e-16 & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.757 & 0.082 & 6.2e-03 & 1.00 \\
+Temporal Weak-SINDy & 1.04 & 0.031 & 4.4e-16 & 1.00 \\
+gEDMD & 1.40 & 0.219 & 9.3e-03 & 0.997 \\
+Vanilla SINDy (FD-STLSQ) & 1.83 & 0.192 & 0.015 & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_correlated_ou.pdf}
+\caption{Correlated OU: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.136$, tensor rel-$L^2=0.051$, $a_{12}$ cosine $1.000$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Coupled OU}\label{sec:v62-coupled-ou}
+\paragraph{Context.} A linear system in which the two coordinates are coupled through the \emph{drift} rather than the noise, the analogue of a two-body linear relaxation. Because the drift matrix is symmetric the dynamics remain reversible, so it serves as a negative control for the circulation read-out: the recovered drift Jacobian must come out (numerically) symmetric and the probability current must vanish, distinguishing genuine coupling from non-equilibrium rotation.
+\paragraph{System.} $$\mathrm{d}X=(-X+0.5Y)\mathrm{d}t+\mathrm{d}W_1,\quad \mathrm{d}Y=(0.5X-Y)\mathrm{d}t+\mathrm{d}W_2.$$
+\paragraph{Generator.} Cross-state linear drift, isotropic noise. The symmetric drift Jacobian makes it reversible (no circulation); $\diff=I$.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.214$ and the diffusion tensor at $0.028$ relative error; the recovered generator gives the relaxation rates and cross-coupling (and, where present, the leverage correlation). The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.215 & 0.028 & -- & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.562 & 0.087 & -- & 1.00 \\
+Temporal Weak-SINDy & 1.00 & 0.057 & -- & 1.00 \\
+gEDMD & 1.21 & 0.176 & -- & 0.997 \\
+Vanilla SINDy (FD-STLSQ) & 1.42 & 0.196 & -- & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_coupled_ou.pdf}
+\caption{Coupled OU: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.214$, tensor rel-$L^2=0.028$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip

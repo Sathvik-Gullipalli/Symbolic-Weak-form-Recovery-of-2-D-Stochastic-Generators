@@ -1,0 +1,62 @@
+% Auto-generated tight datasheets. Coefficients live in the aggregate R32 table. Source: results/v10/coeff_recovery_R32.csv
+\paragraph{Named limits (reported, not hidden)}\;
+
+\subsection{Near-singular tensor}\label{sec:v62-near-singular}
+\paragraph{Context.} A deliberate stress of the positive-semidefinite boundary: the off-diagonal is pushed to $0.95\sqrt{\diff_{11}\diff_{22}}$, so the two noise directions are nearly collinear and the tensor is almost rank-deficient. It marks the edge of identifiability for the diffusion tensor and is reported as a named limit, where the Cholesky parametrisation still guarantees a valid covariance but the magnitude of the off-diagonal is no longer well determined by finite data.
+\paragraph{System.} $$\drift=-X,\ \diff_{12}=0.95\sqrt{\diff_{11}\diff_{22}}.$$
+\paragraph{Generator.} Off-diagonal pushed to the PSD boundary ($\det\diff\to0$): the two noise directions are nearly collinear, so the off-diagonal is ill-conditioned. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.870$ and the diffusion tensor at $1.505$ relative error, with off-diagonal (leverage) cosine $0.724$; the recovered diffusion tensor is a position-dependent field giving the local fluctuation amplitude and relaxation. This is a named limit (fragile physics or identifiability limit): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_near_singular.pdf}
+\caption{Near-singular tensor: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.870$, tensor rel-$L^2=1.505$, $a_{12}$ cosine $0.724$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip
+
+\subsection{Underdamped Langevin}\label{sec:v62-underdamped-langevin}
+\paragraph{Context.} Underdamped (kinetic) Langevin dynamics in position--momentum form, ubiquitous in molecular dynamics and sampling. Only the momentum coordinate is driven by noise, so the diffusion tensor is rank-one with structural zeros in $\diff_{11}$ and $\diff_{12}$, a degenerate target retained as a named limit to show how the method behaves when one direction carries no direct fluctuation.
+\paragraph{System.} $$\mathrm{d}Q=P\,\mathrm{d}t,\ \mathrm{d}P=(-\gamma P-(Q^3-Q))\mathrm{d}t+\sigma\mathrm{d}W.$$
+\paragraph{Generator.} Degenerate rank-1 diffusion ($\diff_{11}=\diff_{12}=0$): one coordinate carries no direct noise. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.157$ and the diffusion tensor at $0.563$ relative error; this system is reported as a named limit. This is a named limit (fragile physics or identifiability limit): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_underdamped_langevin.pdf}
+\caption{Underdamped Langevin: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.157$, tensor rel-$L^2=0.563$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip
+
+\subsection{Near-boundary Heston}\label{sec:v62-near-boundary-heston}
+\paragraph{Context.} A Heston regime that violates the Feller condition, so the variance process spends substantial mass near zero. It probes the estimator at an absorbing/reflecting boundary, where the square-root diffusion is singular and kernel support is truncated; the tensor and leverage survive but the drift degrades, a named boundary limit rather than an estimator defect.
+\paragraph{System.} $$\text{Log-Heston with }2\kappa\theta<\xi^2\ (\text{Feller-violating}).$$
+\paragraph{Generator.} Variance spends mass near $v\to0$; boundary bias degrades drift recovery. Tensor/leverage survive. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=1.413$ and the diffusion tensor at $0.267$ relative error, with off-diagonal (leverage) cosine $0.982$; this system is reported as a named limit. This is a named limit (fragile physics or identifiability limit): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_near_boundary_heston.pdf}
+\caption{Near-boundary Heston: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=1.413$, tensor rel-$L^2=0.267$, $a_{12}$ cosine $0.982$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip
+
+\subsection{Non-polynomial drift}\label{sec:v62-nonpoly-drift}
+\paragraph{Context.} A system with genuinely non-polynomial (trigonometric) drift, included to make the library-completeness requirement explicit. With a polynomial dictionary it fails by construction; with the trigonometric library it is recovered. It is the clean demonstration that, like every dictionary-based identification method, recovery is conditional on the true terms lying in the chosen feature set.
+\paragraph{System.} $$\drift=(-X+\sin Y,\ -Y+\cos X),\ \diff=0.49 I.$$
+\paragraph{Generator.} Trigonometric drift: recovered only with the trig library G; a representability limit for any polynomial dictionary. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.210$ and the diffusion tensor at $0.037$ relative error; this system is reported as a named limit. This is a named limit (registry declared failure or stress case): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_nonpoly_drift.pdf}
+\caption{Non-polynomial drift: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.210$, tensor rel-$L^2=0.037$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip
+
+\subsection{Bad coverage}\label{sec:v62-bad-coverage}
+\paragraph{Context.} A coverage-failure stress case: a rotational OU sampled from trajectories confined to a small region with a short horizon. With the state space under-explored the design matrix becomes rank-deficient, and recovery fails for a data-geometry reason rather than a modelling one, a named limit that delineates the coverage condition the consistency theory requires.
+\paragraph{System.} $$\text{Rotational OU, trajectories confined near }(2,2).$$
+\paragraph{Generator.} Clustered initial condition and short horizon leave the state space under-covered, so the design is rank-deficient. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.815$ and the diffusion tensor at $0.784$ relative error; this system is reported as a named limit. This is a named limit (registry declared failure or stress case): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_bad_coverage.pdf}
+\caption{Bad coverage: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.815$, tensor rel-$L^2=0.784$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip
+
+\subsection{Too-large time step}\label{sec:v62-too-large-dt}
+\paragraph{Context.} The same multiplicative-diffusion system sampled at a coarse time step ($\Delta t=0.05$), included to expose the finite-step (Euler--Maruyama) discretisation bias. The drift-squared correction is exact only as $\Delta t\to0$; its residual grows with the drift Lipschitz constant relative to the step, so this case marks the temporal-resolution boundary of reliable recovery.
+\paragraph{System.} $$\text{Diagonal multiplicative sampled at }\Delta t=0.05.$$
+\paragraph{Generator.} Finite-step (Euler) bias dominates at coarse $\Delta t$; the correction residual grows with the drift Lipschitz constant. Named limit.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.098$ and the diffusion tensor at $0.119$ relative error; this system is reported as a named limit. This is a named limit (registry declared failure or stress case): recovery fails for a physical or identifiability reason (library incompleteness, low signal-to-noise, degeneracy, or coverage), not an estimator defect.
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_too_large_dt.pdf}
+\caption{Too-large time step: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.098$, tensor rel-$L^2=0.119$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{NAMED_NULL}.
+\medskip

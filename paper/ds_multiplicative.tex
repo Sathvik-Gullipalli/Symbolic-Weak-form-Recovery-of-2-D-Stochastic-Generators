@@ -1,0 +1,56 @@
+% Auto-generated tight datasheets. Coefficients live in the aggregate R32 table. Source: results/v10/coeff_recovery_R32.csv
+\paragraph{State-dependent (multiplicative) diffusion}\;
+
+\subsection{Diagonal multiplicative}\label{sec:v62-diag-multiplicative}
+\paragraph{Context.} A linear-drift system with \emph{state-dependent} (multiplicative) diffusion whose amplitude grows quadratically with position, the situation in population dynamics and fluctuating-environment models. It is the first test of recovering a diffusion \emph{field} rather than a constant, and of correctly returning a zero off-diagonal while both diagonal variances grow, i.e. not hallucinating leverage where none exists.
+\paragraph{System.} $$\drift=-X,\ \diff=\mathrm{diag}(0.5+0.1x^2+0.1y^2,\,0.4+0.1x^2+0.1y^2).$$
+\paragraph{Generator.} State-dependent diagonal diffusion (a field, not a constant); off-diagonal correctly zero. Quadratic diffusion terms are low-SNR.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.200$ and the diffusion tensor at $0.112$ relative error; the recovered diffusion tensor is a position-dependent field giving the local fluctuation amplitude and relaxation. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.201 & 0.111 & -- & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 0.524 & 0.076 & -- & 1.00 \\
+Temporal Weak-SINDy & 1.00 & 0.137 & -- & 1.00 \\
+gEDMD & 0.525 & 0.080 & -- & 1.00 \\
+Vanilla SINDy (FD-STLSQ) & 1.53 & 0.172 & -- & 1.00 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_diag_multiplicative.pdf}
+\caption{Diagonal multiplicative: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.200$, tensor rel-$L^2=0.112$, $a_{12}$ cosine $n/a$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip
+
+\subsection{Non-diagonal Cholesky}\label{sec:v62-nondiag-cholesky}
+\paragraph{Context.} The hardest clean synthetic test of a fully \emph{state-dependent off-diagonal} diffusion, constructed through a Cholesky factor so the target is positive semidefinite everywhere by design. The off-diagonal varies in space and changes sign across the axes, so it probes both the recovery of a spatially varying leverage field and the structural PSD guarantee that a naive entrywise regression of cross-increments would violate.
+\paragraph{System.} $$\diff=LL^\top,\ L=\begin{psmallmatrix}0.5+0.1x^2&0\\0.2xy&0.4+0.1y^2\end{psmallmatrix},\ \drift=-X.$$
+\paragraph{Generator.} State-dependent off-diagonal diffusion, PSD by construction; the leading $a_{12}\!\approx\!0.1xy$ term is recovered, higher-order factor terms are weak.
+\paragraph{Recovery.} WG-SINDy recovers the drift at relative $L^2(\mu)=0.204$ and the diffusion tensor at $0.079$ relative error, with off-diagonal (leverage) cosine $0.988$; the recovered diffusion tensor is a position-dependent field giving the local fluctuation amplitude and relaxation. The active symbolic terms are recovered at selection rate one with no false positives; weaker secondary terms carry a lower selection rate.
+% BEGIN METHOD COMPARISON TABLE
+\paragraph{Matched method table.} Same-system comparison on the frozen matched ledger; lower is better except PSD.
+\begin{center}\scriptsize
+\begin{tabular}{lrrrr}
+\toprule
+Method & Drift & Tensor & $1-a_{12}$ cos. & PSD \\
+\midrule
+WG-SINDy & 0.208 & 0.079 & 0.012 & 1.00 \\
+Kramers-Moyal / stochastic SINDy & 1.09 & 0.157 & 0.356 & 1.00 \\
+Temporal Weak-SINDy & 1.00 & 0.125 & 0.238 & 1.00 \\
+gEDMD & 0.452 & 0.065 & 0.094 & 1.00 \\
+Vanilla SINDy (FD-STLSQ) & 3.66 & 0.594 & 0.860 & 0.908 \\
+\bottomrule
+\end{tabular}
+\end{center}
+% END METHOD COMPARISON TABLE
+
+\begin{figure}[H]\centering\includegraphics[width=0.86\linewidth]{datasheet_fields_nondiag_cholesky.pdf}
+\caption{Non-diagonal Cholesky: recovered vs.\ true generator fields (shared per-field colour scale; error column centred at zero).}\end{figure}
+\paragraph{Verdict.} Drift $L^2(\mu)=0.204$, tensor rel-$L^2=0.079$, $a_{12}$ cosine $0.988$, PSD $1.00$, FP $0$ ($n$ seeds). \textbf{PASS}.
+\medskip

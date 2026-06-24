@@ -1,0 +1,625 @@
+file,check,status,n_issues,detail
+results/2d_benchmarks/core2_drift_diffusion_recovery.csv,read_csv,PASS,0,rows=2 cols=10
+results/2d_benchmarks/core2_drift_diffusion_recovery.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/2d_benchmarks/core2_drift_diffusion_recovery.csv,allowed_missing_cells,INFO,1,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/2d_benchmarks/core2_drift_diffusion_recovery.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/2d_benchmarks/core2_drift_diffusion_recovery.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/2d_benchmarks/core2_drift_diffusion_recovery.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/2d_benchmarks/core2_drift_diffusion_recovery.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/benchmark_summary.csv,read_csv,PASS,0,rows=115 cols=38
+results/benchmark_summary.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/benchmark_summary.csv,allowed_missing_cells,INFO,395,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/benchmark_summary.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/benchmark_summary.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/benchmark_summary.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/benchmark_summary.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/benchmark_summary.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/benchmark_summary.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/benchmark_summary.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/benchmark_summary.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/benchmark_summary.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/benchmark_summary.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/benchmark_summary.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/circulation/circ2_current_field.csv,read_csv,PASS,0,rows=5 cols=7
+results/circulation/circ2_current_field.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/circulation/circ2_current_field.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/circulation/circ2_current_field.csv,current_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/circulation/circ3_detector_nulls.csv,read_csv,PASS,0,rows=25 cols=12
+results/circulation/circ3_detector_nulls.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/circulation/circ3_detector_nulls.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/coefficient_recovery.csv,read_csv,PASS,0,rows=4030 cols=15
+results/coefficient_recovery.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/coefficient_recovery.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/coefficient_recovery.csv,abs_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/coefficient_recovery.csv,rel_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/convergence_slopes.csv,read_csv,PASS,0,rows=16 cols=14
+results/convergence_slopes.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/convergence_slopes.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/diffusion_tensor_error.csv,read_csv,PASS,0,rows=345 cols=14
+results/diffusion_tensor_error.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/diffusion_tensor_error.csv,allowed_missing_cells,INFO,585,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/diffusion_tensor_error.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/diffusion_tensor_error.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/diffusion_tensor_error.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/diffusion_tensor_error.csv,a12_sign_accuracy:fraction_range,PASS,0,"must lie in [0,1]"
+results/failure_case_report.csv,read_csv,PASS,0,rows=8 cols=22
+results/failure_case_report.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/failure_case_report.csv,allowed_missing_cells,INFO,19,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/failure_case_report.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/failure_case_report.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/failure_case_report.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/failure_case_report.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/failure_case_report.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/failure_case_report.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/failure_case_report.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/failure_case_report.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/failure_case_report.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/fluctuation/fluc1_noise_correction.csv,read_csv,PASS,0,rows=16 cols=13
+results/fluctuation/fluc1_noise_correction.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/fluctuation/fluc1_noise_correction.csv,allowed_missing_cells,INFO,16,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/fluctuation/fluc1_noise_correction.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/fluctuation/fluc1_noise_correction.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/fluctuation/fluc1_noise_correction.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/fluctuation/fluc1_noise_correction.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/fluctuation/fluc1_noise_correction.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/function_error.csv,read_csv,PASS,0,rows=515 cols=11
+results/function_error.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/function_error.csv,allowed_missing_cells,INFO,195,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/function_error.csv,cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/heston_cir/lev1_synthetic_regimes.csv,read_csv,PASS,0,rows=120 cols=23
+results/heston_cir/lev1_synthetic_regimes.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/heston_cir/lev1_synthetic_regimes.csv,allowed_missing_cells,INFO,31,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/heston_cir/lev1_synthetic_regimes.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev1_synthetic_regimes.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev1_synthetic_regimes.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev1_synthetic_regimes.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev1_synthetic_regimes.csv,rho_tensor_abs_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev2_eiv_phase_transition.csv,read_csv,PASS,0,rows=12 cols=22
+results/heston_cir/lev2_eiv_phase_transition.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/heston_cir/lev2_eiv_phase_transition.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/heston_cir/lev2_eiv_phase_transition.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev2_eiv_phase_transition.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev2_eiv_phase_transition.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev2_eiv_phase_transition.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev2_eiv_phase_transition.csv,rho_tensor_abs_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/heston_cir/lev3_ewma_proxy.csv,read_csv,PASS,0,rows=2 cols=18
+results/heston_cir/lev3_ewma_proxy.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/heston_cir/lev3_ewma_proxy.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/heston_cir/lev3_ewma_proxy.csv,rho_tensor_abs_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/phase_run_log.csv,read_csv,PASS,0,rows=115 cols=5
+results/phase_run_log.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/phase_run_log.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/psd_validity.csv,read_csv,PASS,0,rows=345 cols=13
+results/psd_validity.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/psd_validity.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/psd_validity.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/robustness_grid.csv,read_csv,PASS,0,rows=648 cols=20
+results/robustness_grid.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/robustness_grid.csv,allowed_missing_cells,INFO,972,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/robustness_grid.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/robustness_grid.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/robustness_grid.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/robustness_grid.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/robustness_grid.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/robustness_grid.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/robustness_grid.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/scalar_reproduction/core1_systems_selftest.csv,read_csv,PASS,0,rows=23 cols=8
+results/scalar_reproduction/core1_systems_selftest.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/scalar_reproduction/core1_systems_selftest.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/scalar_reproduction/core3_bias_correction.csv,read_csv,PASS,0,rows=2 cols=5
+results/scalar_reproduction/core3_bias_correction.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/scalar_reproduction/core3_bias_correction.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/scalar_reproduction/core3_bias_correction.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/scalar_reproduction/core3_bias_correction.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/simulation_statistics.csv,read_csv,PASS,0,rows=820 cols=11
+results/simulation_statistics.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/simulation_statistics.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/support_recovery.csv,read_csv,PASS,0,rows=515 cols=13
+results/support_recovery.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/support_recovery.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/factorial.csv,read_csv,PASS,0,rows=17664 cols=66
+results/v4/factorial.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/factorial.csv,allowed_missing_cells,INFO,153019,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/factorial.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/factorial.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/factorial.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/factorial.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/factorial.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/factorial.csv,cond_design:rank_deficient_infinite,INFO,3072,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v4/greedy.csv,read_csv,PASS,0,rows=4485 cols=66
+results/v4/greedy.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/greedy.csv,allowed_missing_cells,INFO,38129,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/greedy.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/greedy.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/greedy.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/greedy.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/greedy.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/greedy.csv,cond_design:rank_deficient_infinite,INFO,780,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v4/leaderboard.csv,read_csv,PASS,0,rows=719 cols=14
+results/v4/leaderboard.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/leaderboard.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/leaderboard.csv,median_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/leaderboard.csv,median_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/leaderboard.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/ofat_screening.csv,read_csv,PASS,0,rows=846 cols=66
+results/v4/ofat_screening.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/ofat_screening.csv,allowed_missing_cells,INFO,5943,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/ofat_screening.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/ofat_screening.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/ofat_screening.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/ofat_screening.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/ofat_screening.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/per_system_best.csv,read_csv,PASS,0,rows=552 cols=66
+results/v4/per_system_best.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/per_system_best.csv,allowed_missing_cells,INFO,4648,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/per_system_best.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/per_system_best.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/per_system_best.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/per_system_best.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/per_system_best.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/per_system_best.csv,cond_design:rank_deficient_infinite,INFO,96,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v4/run_log.csv,read_csv,PASS,0,rows=1 cols=8
+results/v4/run_log.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/run_log.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/stage0_baseline.csv,read_csv,PASS,0,rows=115 cols=66
+results/v4/stage0_baseline.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/stage0_baseline.csv,allowed_missing_cells,INFO,975,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v4/stage0_baseline.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/stage0_baseline.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/stage0_baseline.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v4/stage0_baseline.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v4/stage0_baseline.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v4/stage0_baseline.csv,cond_design:rank_deficient_infinite,INFO,20,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v4/variant_catalog.csv,read_csv,PASS,0,rows=123 cols=25
+results/v4/variant_catalog.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v4/variant_catalog.csv,allowed_missing_cells,INFO,170,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/factorial.csv,read_csv,PASS,0,rows=18515 cols=79
+results/v5/factorial.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/factorial.csv,allowed_missing_cells,INFO,179820,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/factorial.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/factorial.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/factorial.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/factorial.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/factorial.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/factorial.csv,cond_design:rank_deficient_infinite,INFO,3220,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v5/global_default.csv,read_csv,PASS,0,rows=1 cols=7
+results/v5/global_default.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/global_default.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/graft_ablation.csv,read_csv,PASS,0,rows=90 cols=11
+results/v5/graft_ablation.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/graft_ablation.csv,allowed_missing_cells,INFO,438,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/greedy.csv,read_csv,PASS,0,rows=8280 cols=79
+results/v5/greedy.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/greedy.csv,allowed_missing_cells,INFO,78631,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/greedy.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/greedy.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/greedy.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/greedy.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/greedy.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/greedy.csv,cond_design:rank_deficient_infinite,INFO,1440,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v5/leaderboard.csv,read_csv,PASS,0,rows=617 cols=17
+results/v5/leaderboard.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/leaderboard.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/leaderboard.csv,median_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/leaderboard.csv,median_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/leaderboard.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/ofat_screening.csv,read_csv,PASS,0,rows=3400 cols=79
+results/v5/ofat_screening.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/ofat_screening.csv,allowed_missing_cells,INFO,27836,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/ofat_screening.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/ofat_screening.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/ofat_screening.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/ofat_screening.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/ofat_screening.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/per_system_best.csv,read_csv,PASS,0,rows=920 cols=79
+results/v5/per_system_best.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/per_system_best.csv,allowed_missing_cells,INFO,8675,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/per_system_best.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/per_system_best.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/per_system_best.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/per_system_best.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/per_system_best.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/per_system_best.csv,cond_design:rank_deficient_infinite,INFO,160,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v5/run_log.csv,read_csv,PASS,0,rows=1 cols=10
+results/v5/run_log.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/run_log.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/stage0_baseline.csv,read_csv,PASS,0,rows=115 cols=79
+results/v5/stage0_baseline.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/stage0_baseline.csv,allowed_missing_cells,INFO,1092,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5/stage0_baseline.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/stage0_baseline.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/stage0_baseline.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5/stage0_baseline.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5/stage0_baseline.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5/stage0_baseline.csv,cond_design:rank_deficient_infinite,INFO,20,"infinite condition number records rank-deficient design diagnostics, not a finite metric"
+results/v5/variant_catalog.csv,read_csv,PASS,0,rows=123 cols=39
+results/v5/variant_catalog.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5/variant_catalog.csv,allowed_missing_cells,INFO,473,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/global_default_inscope.csv,read_csv,PASS,0,rows=1 cols=30
+results/v5_5/global_default_inscope.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/global_default_inscope.csv,allowed_missing_cells,INFO,1,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/global_default_inscope.csv,median_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/global_default_inscope.csv,p10_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/global_default_inscope.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/global_default_inscope.csv,median_log_price_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/leaderboard_inscope.csv,read_csv,PASS,0,rows=342 cols=24
+results/v5_5/leaderboard_inscope.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/leaderboard_inscope.csv,allowed_missing_cells,INFO,365,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/leaderboard_inscope.csv,median_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/leaderboard_inscope.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/loo_cells.csv,read_csv,PASS,0,rows=650 cols=81
+results/v5_5/loo_cells.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/loo_cells.csv,allowed_missing_cells,INFO,6067,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/loo_cells.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/loo_cells.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/loo_cells.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/loo_cells.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/loo_cells.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/minimal_graft_ablation.csv,read_csv,PASS,0,rows=9 cols=14
+results/v5_5/minimal_graft_ablation.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/minimal_graft_ablation.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/run_log.csv,read_csv,PASS,0,rows=1 cols=9
+results/v5_5/run_log.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/run_log.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/solidify_cells.csv,read_csv,PASS,0,rows=1170 cols=81
+results/v5_5/solidify_cells.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/solidify_cells.csv,allowed_missing_cells,INFO,10804,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/solidify_cells.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/solidify_cells.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/solidify_cells.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/solidify_cells.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cells.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/solidify_cis.csv,read_csv,PASS,0,rows=162 cols=25
+results/v5_5/solidify_cis.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/solidify_cis.csv,allowed_missing_cells,INFO,621,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/solidify_cis.csv,median_objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cis.csv,median_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/solidify_cis.csv,median_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/solidify_cis.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/solidify_cis.csv,median_log_price_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,read_csv,PASS,0,rows=910 cols=81
+results/v5_5/targeted_combos.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v5_5/targeted_combos.csv,allowed_missing_cells,INFO,8288,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v5_5/targeted_combos.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v5_5/targeted_combos.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/targeted_combos.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v5_5/targeted_combos.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v5_5/targeted_combos.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/act1_naive1d_failure.csv,read_csv,PASS,0,rows=13 cols=10
+results/v6/act1_naive1d_failure.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/act1_naive1d_failure.csv,allowed_missing_cells,INFO,7,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/act1_naive1d_failure.csv,median_objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act1_naive1d_failure.csv,median_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act1_naive1d_failure.csv,median_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/act1_naive1d_failure.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/act2_graft_ladder.csv,read_csv,PASS,0,rows=7 cols=9
+results/v6/act2_graft_ladder.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/act2_graft_ladder.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/act2_graft_ladder.csv,median_objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder.csv,median_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/act2_graft_ladder_cells.csv,read_csv,PASS,0,rows=910 cols=81
+results/v6/act2_graft_ladder_cells.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/act2_graft_ladder_cells.csv,allowed_missing_cells,INFO,8790,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/act2_graft_ladder_cells.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/act2_graft_ladder_cells.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/act2_graft_ladder_cells.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/act2_graft_ladder_cells.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/act2_graft_ladder_cells.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/b0_equivalence.csv,read_csv,PASS,0,rows=130 cols=6
+results/v6/b0_equivalence.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/b0_equivalence.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/cell_diagnosis.csv,read_csv,PASS,0,rows=77 cols=8
+results/v6/cell_diagnosis.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/cell_diagnosis.csv,allowed_missing_cells,INFO,23,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/convergence.csv,read_csv,PASS,0,rows=16 cols=16
+results/v6/convergence.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/convergence.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/data_integrity_report.csv,read_csv,PASS,0,rows=618 cols=5
+results/v6/data_integrity_report.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/data_integrity_report.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/external_1d_provenance.csv,read_csv,PASS,0,rows=1 cols=7
+results/v6/external_1d_provenance.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/external_1d_provenance.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/freeze_confirm.csv,read_csv,PASS,0,rows=3 cols=12
+results/v6/freeze_confirm.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/freeze_confirm.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/freeze_confirm.csv,p90_objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm.csv,median_objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm.csv,median_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm.csv,median_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/freeze_confirm.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/freeze_confirm_cells.csv,read_csv,PASS,0,rows=390 cols=81
+results/v6/freeze_confirm_cells.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/freeze_confirm_cells.csv,allowed_missing_cells,INFO,3600,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/freeze_confirm_cells.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/freeze_confirm_cells.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/freeze_confirm_cells.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/freeze_confirm_cells.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/freeze_confirm_cells.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/headtohead.csv,read_csv,PASS,0,rows=78 cols=13
+results/v6/headtohead.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/headtohead.csv,allowed_missing_cells,INFO,42,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/headtohead.csv,median_objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead.csv,median_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead.csv,median_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/headtohead.csv,median_psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/headtohead_cells.csv,read_csv,PASS,0,rows=780 cols=81
+results/v6/headtohead_cells.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/headtohead_cells.csv,allowed_missing_cells,INFO,7465,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/headtohead_cells.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/headtohead_cells.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/headtohead_cells.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/headtohead_cells.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/headtohead_cells.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/honest_nulls.csv,read_csv,PASS,0,rows=8 cols=24
+results/v6/honest_nulls.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/honest_nulls.csv,allowed_missing_cells,INFO,19,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/honest_nulls.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/honest_nulls.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/honest_nulls.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/honest_nulls.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/honest_nulls.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/honest_nulls.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/honest_nulls.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/honest_nulls.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/honest_nulls.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/necessity_matrix.csv,read_csv,PASS,0,rows=30 cols=8
+results/v6/necessity_matrix.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/necessity_matrix.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/necessity_matrix_cells.csv,read_csv,PASS,0,rows=910 cols=81
+results/v6/necessity_matrix_cells.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/necessity_matrix_cells.csv,allowed_missing_cells,INFO,8400,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/necessity_matrix_cells.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/necessity_matrix_cells.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/necessity_matrix_cells.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/necessity_matrix_cells.csv,oracle_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,oracle_diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,oracle_a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/necessity_matrix_cells.csv,oracle_a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/readouts_circulation.csv,read_csv,PASS,0,rows=5 cols=9
+results/v6/readouts_circulation.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/readouts_circulation.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/readouts_circulation.csv,current_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/readouts_fluctuation.csv,read_csv,PASS,0,rows=16 cols=15
+results/v6/readouts_fluctuation.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/readouts_fluctuation.csv,allowed_missing_cells,INFO,16,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/readouts_fluctuation.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_fluctuation.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_fluctuation.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_fluctuation.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_fluctuation.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/readouts_leverage.csv,read_csv,PASS,0,rows=120 cols=25
+results/v6/readouts_leverage.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/readouts_leverage.csv,allowed_missing_cells,INFO,31,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/readouts_leverage.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_leverage.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_leverage.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_leverage.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/readouts_leverage.csv,rho_tensor_abs_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/run_log.csv,read_csv,PASS,0,rows=1 cols=11
+results/v6/run_log.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/run_log.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/showcase/showcase_coefficients.csv,read_csv,PASS,0,rows=530 cols=21
+results/v6/showcase/showcase_coefficients.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/showcase/showcase_coefficients.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/showcase/showcase_coefficients_raw.csv,read_csv,PASS,0,rows=5300 cols=15
+results/v6/showcase/showcase_coefficients_raw.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/showcase/showcase_coefficients_raw.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/showcase/showcase_coefficients_raw.csv,rel_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_dynamics.csv,read_csv,PASS,0,rows=1040 cols=6
+results/v6/showcase/showcase_dynamics.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/showcase/showcase_dynamics.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/showcase/showcase_dynamics.csv,abs_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_invariants.csv,read_csv,PASS,0,rows=130 cols=6
+results/v6/showcase/showcase_invariants.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/showcase/showcase_invariants.csv,allowed_missing_cells,INFO,183,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/showcase/showcase_invariants.csv,current_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/showcase/showcase_summary.csv,read_csv,PASS,0,rows=13 cols=19
+results/v6/showcase/showcase_summary.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/showcase/showcase_summary.csv,allowed_missing_cells,INFO,21,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/showcase/showcase_summary.csv,objective_drift_median:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary.csv,diffusion_median:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary.csv,psd_valid_median:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/showcase/showcase_summary_raw.csv,read_csv,PASS,0,rows=130 cols=23
+results/v6/showcase/showcase_summary_raw.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/showcase/showcase_summary_raw.csv,allowed_missing_cells,INFO,210,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/showcase/showcase_summary_raw.csv,objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/showcase/showcase_summary_raw.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/showcase/showcase_summary_raw.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/showcase/showcase_summary_raw.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/system_index.csv,read_csv,PASS,0,rows=29 cols=21
+results/v6/system_index.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/system_index.csv,allowed_missing_cells,INFO,20,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/system_index.csv,drift_l2_mu:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/system_index.csv,tensor_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/system_index.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/system_index.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/v6_2_extra_coefficients.csv,read_csv,PASS,0,rows=700 cols=21
+results/v6/v6_2_extra_coefficients.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/v6_2_extra_coefficients.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/v6_2_extra_coefficients_raw.csv,read_csv,PASS,0,rows=7000 cols=15
+results/v6/v6_2_extra_coefficients_raw.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/v6_2_extra_coefficients_raw.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/v6_2_extra_coefficients_raw.csv,rel_error:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary.csv,read_csv,PASS,0,rows=16 cols=21
+results/v6/v6_2_extra_summary.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/v6_2_extra_summary.csv,allowed_missing_cells,INFO,55,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/v6_2_extra_summary.csv,objective_drift_median:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary.csv,diffusion_median:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary.csv,psd_valid_median:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/v6_2_extra_summary_raw.csv,read_csv,PASS,0,rows=160 cols=26
+results/v6/v6_2_extra_summary_raw.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/v6_2_extra_summary_raw.csv,allowed_missing_cells,INFO,710,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems
+results/v6/v6_2_extra_summary_raw.csv,objective_drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,drift_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,diffusion_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,b1_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,b2_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,a11_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,a22_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,a12_rel_l2:nonnegative,PASS,0,relative/absolute errors must be nonnegative
+results/v6/v6_2_extra_summary_raw.csv,a12_cosine:cosine_range,PASS,0,"must lie in [-1,1]"
+results/v6/v6_2_extra_summary_raw.csv,a12_sign_acc:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/v6_2_extra_summary_raw.csv,psd_valid_pct:fraction_range,PASS,0,"must lie in [0,1]"
+results/v6/v6_2_run_log.csv,read_csv,PASS,0,rows=1 cols=9
+results/v6/v6_2_run_log.csv,duplicate_full_rows,PASS,0,exact duplicate rows
+results/v6/v6_2_run_log.csv,allowed_missing_cells,PASS,0,blank/nan allowed for non-applicable metrics such as a12 on diagonal systems

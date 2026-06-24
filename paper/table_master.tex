@@ -1,0 +1,59 @@
+\begin{table}[t]\centering\small
+\caption{Master system index (navigation layer). Recovery metrics are medians over $n=10$ seeds at the frozen
+WG-SINDy configuration. ``Drift'' is the $L^2(\mu)$ relative drift error; ``Tensor'' the relative diffusion-tensor
+error; ``$a_{12}$cos'' the off-diagonal cosine (``--'' where diffusion is diagonal, so $a_{12}\equiv0$);
+``PSD'' the fraction of grid points with a positive-semidefinite recovered tensor; ``FP'' the false-positive
+count. $\checkmark$ PASS, $\circ$ scoped review, $\times$ named physical limit. Each system links to its
+datasheet in \Cref{app:datasheets}.}\label{tab:master}
+\begin{tabular}{l l c c c c c c}
+\toprule
+System & Family/Tier & Drift & Tensor & $a_{12}$cos & PSD & FP & Verdict \\
+\midrule
+\multicolumn{8}{l}{\textit{Linear Ornstein--Uhlenbeck}}\\
+\hyperref[sec:v62-indep-ou]{Independent OU} & linear/1 & 0.098 & 0.033 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-correlated-ou]{Correlated OU} & linear/1 & 0.136 & 0.051 & 1.000 & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-coupled-ou]{Coupled OU} & linear/1 & 0.214 & 0.028 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-two-factor-vasicek]{Two-factor Vasicek} & linear/9 & 0.350 & --$^\dagger$ & -- & 1.00 & 0 & $\circ$ \\
+\midrule
+\multicolumn{8}{l}{\textit{Rotational / non-reversible}}\\
+\hyperref[sec:v62-rotational-ou]{Rotational OU} & rotational/2 & 0.058 & 0.038 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-spiral-sink-corr]{Spiral sink + corr.\ noise} & rotational/2 & 0.078 & 0.043 & 1.000 & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-nongradient-circulation]{Non-gradient circulation} & rotational/3 & 0.239 & 0.024 & -- & 1.00 & 0 & $\checkmark$ \\
+\midrule
+\multicolumn{8}{l}{\textit{Bistable / gradient}}\\
+\hyperref[sec:v62-double-well-transverse]{Double well + transverse} & bistable/3 & 0.226 & 0.024 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-gradient-potential]{Gradient potential} & bistable/3 & 0.246 & 0.024 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-maier-stein]{Maier--Stein} & bistable/8 & 0.235 & 0.038 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-duffing]{Duffing oscillator} & bistable/8 & 0.240 & 0.031 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-mueller-brown]{M\"uller--Brown} & bistable/8 & 1.826 & 0.075 & -- & 1.00 & 0 & $\times$ \\
+\midrule
+\multicolumn{8}{l}{\textit{Multiplicative / state-dependent diffusion}}\\
+\hyperref[sec:v62-diag-multiplicative]{Diagonal multiplicative} & multipl./4 & 0.200 & 0.112 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-nondiag-cholesky]{Non-diagonal Cholesky} & multipl./4 & 0.204 & 0.079 & 0.988 & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-near-singular]{Near-singular tensor} & multipl./4 & 0.870 & 1.505 & 0.724 & 1.00 & 0 & $\times$ \\
+\midrule
+\multicolumn{8}{l}{\textit{Financial / stochastic volatility}}\\
+\hyperref[sec:v62-heston-logsv]{Log-Heston} & financial/5 & 0.143 & 0.054 & 0.999 & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-heston-sv]{Heston $(S,V)$} & financial/5 & 0.273 & 0.089 & 0.993 & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-cir-pair]{CIR pair} & financial/5 & 0.393 & 0.116 & 0.995 & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-sabr]{SABR} & financial/9 & --$^\ddagger$ & 0.195 & 0.990 & 1.00 & 0 & $\times$ \\
+\hyperref[sec:v62-gbm-2d]{Correlated 2D GBM} & financial/9 & 2.49 & 0.096 & 0.997 & 1.00 & 0 & $\circ$ \\
+\midrule
+\multicolumn{8}{l}{\textit{Stochastic limit cycles}}\\
+\hyperref[sec:v62-van-der-pol]{Van der Pol} & limit-cycle/7 & 0.066 & 0.040 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-fitzhugh-nagumo]{FitzHugh--Nagumo} & limit-cycle/7 & 0.205 & 0.040 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-stuart-landau]{Stuart--Landau} & limit-cycle/7 & 0.126 & 0.018 & -- & 1.00 & 0 & $\checkmark$ \\
+\hyperref[sec:v62-brusselator]{Brusselator} & limit-cycle/7 & 0.013 & 0.067 & -- & 1.00 & 0 & $\checkmark$ \\
+\midrule
+\multicolumn{8}{l}{\textit{Honest limits (named, reported)}}\\
+\hyperref[sec:v62-underdamped-langevin]{Underdamped Langevin} & limit/6 & 0.157 & 0.563 & -- & 1.00 & 0 & $\times$ \\
+\hyperref[sec:v62-near-boundary-heston]{Near-boundary Heston} & limit/6 & 1.413 & 0.267 & 0.982 & 1.00 & 0 & $\times$ \\
+\hyperref[sec:v62-nonpoly-drift]{Non-polynomial drift} & limit/6 & 0.210 & 0.037 & -- & 1.00 & 0 & $\times$ \\
+\hyperref[sec:v62-bad-coverage]{Bad coverage} & limit/6 & 0.815 & 0.784 & -- & 1.00 & 0 & $\times$ \\
+\hyperref[sec:v62-too-large-dt]{Too-large $\Delta t$} & limit/6 & 0.098 & 0.119 & -- & 1.00 & 0 & $\times$ \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\footnotesize $^\dagger$ Constant tiny tensor: relative-$L^2$ is degenerate; absolute error is small (see datasheet).
+$^\ddagger$ SABR is driftless ($b\equiv0$); the drift relative error is undefined while tensor and leverage are recovered.
+\end{table}

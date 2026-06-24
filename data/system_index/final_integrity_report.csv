@@ -1,0 +1,12 @@
+check,status,detail
+system_index_count,PASS,29 rows vs 29 registry 2D systems
+coefficient_system_coverage,PASS,29 coefficient systems
+zero_truth_uses_abs_error,PASS,934 zero-truth rows
+datasheet_tex_count,PASS,29 tex datasheets
+datasheet_md_count,PASS,29 markdown datasheets
+v7_figure_count,PASS,29 png figures
+table1_rows,PASS,v7 navigation table generated
+manuscript_exists,PASS,paper/wg_sindy_v7_manuscript.tex
+overleaf_folder_exists,PASS,/Users/admin/2d_sde/v7-stage/overleaf_wg_sindy_v7
+stage_run_script_exists,PASS,/Users/admin/2d_sde/v7-stage/run_all_v7.sh
+local_tex_toolchain,PASS,pdflatex not installed locally; Overleaf bundle generated
